@@ -59,13 +59,15 @@ jobs:
           path: site
       - id: deploy
         uses: actions/deploy-pages@v4
-      - name: Email subscribers about new picks
+      - name: Email + Discord alerts for new picks and results
         env:
           SITE_DIR: site
           EMAIL_STATE: data/site/emailed.json
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           python p/email_alerts.py
+          DISCORD_STATE=data/site/discord.json python p/discord_alerts.py
           git add data/site
           if ! git diff --cached --quiet; then
             git commit -qm "email state $(date -u +%H:%MZ)"
