@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beat the Close: NFL picks with receipts</title>
+  <meta name="description" content="Model-driven NFL picks, posted before kickoff and graded afterwards, with closing-line value for every bet.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="Beat the Close picks" href="feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to picks</a>
+  <header class="top">
+    <div class="top-in">
+      <a class="brand" href="#board" aria-label="Beat the Close home">
+        <span class="brand-word">Beat the</span>
+        <span class="brand-close">Close</span>
+      </a>
+      <nav class="tabs" aria-label="Sections">
+        <a href="#board" data-tab="board">Board</a>
+        <a href="#record" data-tab="record">Record</a>
+        <a href="#wire" data-tab="wire">News wire</a>
+        <a href="#method" data-tab="method">How it works</a>
+      </nav>
+      <a class="alert-btn" href="#alerts">Get alerts</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- BOARD -->
+    <section class="view" id="view-board" aria-labelledby="board-title">
+      <div class="board-head">
+        <div>
+          <h1 id="board-title" class="week-title">Week <span id="week-num">–</span></h1>
+          <p class="week-sub" id="week-sub"></p>
+        </div>
+        <p class="season-line" id="season-line"></p>
+      </div>
+      <div class="weeks" role="tablist" aria-label="NFL week" id="week-pills"></div>
+      <div class="filters" role="group" aria-label="Show">
+        <button class="chip on" data-filter="all">All</button>
+        <button class="chip" data-filter="open">Open</button>
+        <button class="chip" data-filter="W">Won</button>
+        <button class="chip" data-filter="L">Lost</button>
+      </div>
+      <div id="tickets" class="tickets" aria-live="polite"></div>
+    </section>
+
+    <!-- RECORD -->
+    <section class="view" id="view-record" aria-labelledby="record-title" hidden>
+      <h1 id="record-title" class="page-title">The record</h1>
+      <p class="lede">Every pick that counts, graded after the game. Closing-line value says whether we got a better price than the
+        market's final word, which predicts long-run results better than a few weeks of wins and losses.</p>
+      <div class="stats" id="stats"></div>
+      <div class="panel chart-panel">
+        <h2 class="h2">Units over time</h2>
+        <p class="note">Running profit in units ($10 per unit), one step per graded pick.</p>
+        <div id="units-chart" class="chart"></div>
+      </div>
+      <div class="panel chart-panel">
+        <h2 class="h2">Closing-line value by week</h2>
+        <p class="note">Average points of win probability we beat (above zero) or trailed (below zero) the closing price by.</p>
+        <div id="clv-chart" class="chart"></div>
+      </div>
+      <div class="panel">
+        <h2 class="h2">By bet type</h2>
+        <table class="table" id="type-table"></table>
+      </div>
+    </section>
+
+    <!-- WIRE -->
+    <section class="view" id="view-wire" aria-labelledby="wire-title" hidden>
+      <h1 id="wire-title" class="page-title">News wire</h1>
+      <p class="lede">Quarterback and injury news the model reacted to. A starting-QB change triggers a fresh look at every line;
+        an injured pass-catcher triggers a look at his game's props.</p>
+      <ol class="wire" id="wire-list"></ol>
+    </section>
+
+    <!-- METHOD -->
+    <section class="view prose" id="view-method" aria-labelledby="method-title" hidden>
+      <h1 id="method-title" class="page-title">How it works</h1>
+      <h2 class="h2">Price first</h2>
+      <p>We compare prices on betting exchanges (Novig, ProphetX, Kalshi) with Pinnacle, the sharpest sportsbook, after removing
+        its built-in margin. A pick is posted only when the price you can actually get is at least 3% better than that fair
+        price. Each card shows the worst price still worth taking.</p>
+      <h2 class="h2">Timing</h2>
+      <p>Most picks go out on Sunday mornings, right after inactives are announced, when our research showed prices are
+        softest. Breaking quarterback and injury news triggers extra checks during the week.</p>
+      <h2 class="h2">Teasers</h2>
+      <p>Two-team, six-point teasers on underdogs of +1.5 to +2.5 in games with totals of 49 or less. Teasing through 3 and 7
+        has won about 78% of legs since 2014, above the 74% needed at the usual price.</p>
+      <h2 class="h2">Grading</h2>
+      <p>Results come from official box scores. Closing-line value compares our price with the no-margin closing price at
+        Pinnacle. Picks marked "paper" are tracked but not counted. Stakes are flat: $5 to $7.50 per pick.</p>
+      <h2 class="h2">Receipts</h2>
+      <p>Every pick is committed to a public GitHub repository when it appears here, before kickoff, so the timestamps can be
+        checked.</p>
+    </section>
+
+    <!-- ALERTS -->
+    <section class="panel alerts" id="alerts" aria-labelledby="alerts-title">
+      <div>
+        <h2 id="alerts-title" class="h2">Get picks when news breaks</h2>
+        <p class="note">An email when new picks post, including the ones triggered by injury and weather news. No spam, unsubscribe
+          in one click.</p>
+      </div>
+      <div>
+        <form class="signup" id="signup" method="post" target="_blank">
+          <label class="sr" for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <input type="hidden" name="tag" value="nfl-alerts">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="note small signup-note" id="signup-note"></p>
+        <p class="note small">Prefer a feed? Add <a href="feed.xml">the RSS feed</a> to any reader.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Research and entertainment, not financial advice. 21+ only, and only where sports betting or prediction markets are legal
+      for you. If gambling stops being fun, call 1-800-GAMBLER.</p>
+    <p id="updated" class="small"></p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="data/bundle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

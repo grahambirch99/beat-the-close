@@ -1,0 +1,156 @@
+{
+ "season": {
+  "w": 6,
+  "l": 7,
+  "p": 0,
+  "units": 0.1,
+  "roi": 2.1,
+  "clv": -0.63,
+  "beat": 60,
+  "n_clv": 10
+ },
+ "curve": [
+  {
+   "id": "W6-01",
+   "week": 6,
+   "label": "Kendrick Bourne: Under 3.5 receptions",
+   "units": -0.5
+  },
+  {
+   "id": "W6-02",
+   "week": 6,
+   "label": "Josh Downs: Under 4.5 receptions",
+   "units": -0.08
+  },
+  {
+   "id": "W6-03",
+   "week": 6,
+   "label": "Blake Corum: Over 1.5 receptions",
+   "units": 0.75
+  },
+  {
+   "id": "W6-04",
+   "week": 6,
+   "label": "Ty Johnson: Over 2.5 receptions",
+   "units": 0.25
+  },
+  {
+   "id": "W6-05",
+   "week": 6,
+   "label": "Kenneth Walker III: Under 3.5 receptions",
+   "units": 0.58
+  },
+  {
+   "id": "W6-06",
+   "week": 6,
+   "label": "Justice Hill: Under 1.5 receptions",
+   "units": 0.08
+  },
+  {
+   "id": "W6-07",
+   "week": 6,
+   "label": "Jaylen Warren: Under 3.5 receptions",
+   "units": 0.62
+  },
+  {
+   "id": "W6-08",
+   "week": 6,
+   "label": "Najee Harris: Under 29.5 rushing yards",
+   "units": 0.62
+  },
+  {
+   "id": "W6-09",
+   "week": 6,
+   "label": "Kendrick Bourne: Under 35.5 receiving yards",
+   "units": 0.62
+  },
+  {
+   "id": "W6-15",
+   "week": 6,
+   "label": "Chase McLaughlin: Under 6.5 kicking points",
+   "units": 0.62
+  },
+  {
+   "id": "W6-24",
+   "week": 6,
+   "label": "Germie Bernard: Under 3.5 receptions",
+   "units": 0.12
+  },
+  {
+   "id": "W6-25",
+   "week": 6,
+   "label": "Mark Andrews: Under 3.5 receptions",
+   "units": 0.6
+  },
+  {
+   "id": "W6-29",
+   "week": 6,
+   "label": "Elic Ayomanor: Over 1.5 receptions",
+   "units": 0.1
+  }
+ ],
+ "clv_by_week": [
+  {
+   "week": 6,
+   "clv": -0.63,
+   "n": 10
+  }
+ ],
+ "by_type": [
+  {
+   "type": "Receptions",
+   "w": 5,
+   "l": 5,
+   "p": 0,
+   "units": 0.1,
+   "roi": 2.1,
+   "clv": -0.63,
+   "beat": 60,
+   "n_clv": 10
+  },
+  {
+   "type": "Rushing yards",
+   "w": 1,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "roi": null,
+   "clv": null,
+   "beat": null,
+   "n_clv": 0
+  },
+  {
+   "type": "Receiving yards",
+   "w": 0,
+   "l": 1,
+   "p": 0,
+   "units": 0,
+   "roi": null,
+   "clv": null,
+   "beat": null,
+   "n_clv": 0
+  },
+  {
+   "type": "Kicking points",
+   "w": 0,
+   "l": 1,
+   "p": 0,
+   "units": 0,
+   "roi": null,
+   "clv": null,
+   "beat": null,
+   "n_clv": 0
+  },
+  {
+   "type": "Game lines",
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "roi": null,
+   "clv": null,
+   "beat": null,
+   "n_clv": 0
+  }
+ ]
+}
