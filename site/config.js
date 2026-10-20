@@ -15,7 +15,8 @@ window.SITE_CONFIG = {
     { name: "PrizePicks", what: "Pick'em", url: "https://prizepicks.onelink.me/FjtC/sbk72u0x", code: "", offer: "" },
     { name: "DraftKings Predictions", what: "Prediction market", url: "https://predictions.draftkings.com/r/pd/grahamb35/US-CA-SA/US-CA", code: "", offer: "" },
     { name: "FanDuel", what: "Sportsbook and fantasy", url: "https://fndl.co/o7s1b1g", code: "", offer: "" },
-    { name: "Underdog", what: "Pick'em", url: "", code: "", offer: "" },
+    { name: "Underdog", what: "Pick'em", url: "https://play.underdogsports.com/vgwg/ajd0vrzj", code: "",
+      offer: "Bonus pack worth up to $150, plus a 50% deposit match for new users." },
     { name: "Polymarket", what: "Prediction market", url: "", code: "", offer: "" },
   ],
   // Public repo whose commit history timestamps every pick that appears on the site.
