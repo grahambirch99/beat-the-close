@@ -4,6 +4,8 @@ name: nba-paper
 # and points/rebounds/assists props 30-60 min before tip, captures closing prices, logs edges and their CLV.
 # Raw odds stay in a GitHub Actions cache (never committed); only derived results go to data/nba/.
 # Needs the ODDS_API_KEY secret in this repo (same key as the private pipeline).
+# Paper bets (data/nba/paper.csv) are committed every 10 minutes during the night and shown on the site's NBA Test tab.
+# They are never sent to Discord. Results are graded from ESPN box scores on the next night's run.
 on:
   schedule:
     - cron: "30 22 * * *"
@@ -57,8 +59,20 @@ jobs:
           ALERTS_DIR: nba-cache/alerts
           MIN_CREDITS_RESERVE: "2000"
           MINUTES: ${{ inputs.minutes || '330' }}
+          NBA_OUT: data/nba
         run: |
-          mkdir -p nba-cache
+          mkdir -p nba-cache data/nba
+          git config user.name  "closing-line-club"
+          git config user.email "closing-line-club@users.noreply.github.com"
+          # Commit paper bets every 10 minutes during the night, so each one is timestamped before tip-off.
+          ( while sleep 600; do
+              [ -f nba-cache/nba.db ] && python p/nba_paper.py > /dev/null 2>&1 || true
+              git add data/nba 2>/dev/null || true
+              if ! git diff --cached --quiet; then
+                git commit -qm "nba paper bets $(date -u +%Y-%m-%dT%H:%MZ)"
+                for i in 1 2 3; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+              fi
+            done ) &
           python p/sunday_ops.py --max-minutes "$MINUTES" --tick 300
       - name: Grade edges by CLV
         if: always()
