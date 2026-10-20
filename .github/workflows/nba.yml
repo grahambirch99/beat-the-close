@@ -1,0 +1,82 @@
+name: nba-paper
+
+# NBA paper tracking (not published as picks). Nightly from ~3:30 PM PT (~2:30 PM in winter): pulls each game's lines
+# and points/rebounds/assists props 30-60 min before tip, captures closing prices, logs edges and their CLV.
+# Raw odds stay in a GitHub Actions cache (never committed); only derived results go to data/nba/.
+# Needs the ODDS_API_KEY secret in this repo (same key as the private pipeline).
+on:
+  schedule:
+    - cron: "30 22 * * *"
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "Max minutes to run"
+        default: "330"
+
+concurrency:
+  group: nba
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  night:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: grahambirch99/nfl-odds-logger
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: p
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Restore NBA odds cache
+        uses: actions/cache/restore@v4
+        with:
+          path: nba-cache
+          key: nba-db-${{ github.run_id }}
+          restore-keys: nba-db-
+      - name: Game night
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_SPORT: basketball_nba
+          ODDS_DB: nba-cache/nba.db
+          OPS_STATE: nba-cache/state.json
+          ODDS_DAYS_AHEAD: "0.7"
+          ODDS_PROP_MARKETS: player_points,player_rebounds,player_assists
+          POST_LO: "30"
+          POST_HI: "60"
+          OPS_INJURY: "0"
+          OPS_ANGLES: "0"
+          ALERTS_NO_LEDGER: "1"
+          ALERTS_DIR: nba-cache/alerts
+          MIN_CREDITS_RESERVE: "2000"
+          MINUTES: ${{ inputs.minutes || '330' }}
+        run: |
+          mkdir -p nba-cache
+          python p/sunday_ops.py --max-minutes "$MINUTES" --tick 300
+      - name: Grade edges by CLV
+        if: always()
+        env:
+          ODDS_DB: nba-cache/nba.db
+          NBA_OUT: data/nba
+        run: |
+          [ -f nba-cache/nba.db ] && python p/nba_paper.py || echo "no NBA data tonight"
+          git config user.name  "closing-line-club"
+          git config user.email "closing-line-club@users.noreply.github.com"
+          git add data/nba 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -qm "nba paper $(date -u +%Y-%m-%d)"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+          fi
+      - name: Save NBA odds cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: nba-cache
+          key: nba-db-${{ github.run_id }}
