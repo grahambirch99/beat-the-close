@@ -24,6 +24,7 @@
       <nav class="tabs" aria-label="Sections">
         <a href="#board" data-tab="board">Board</a>
         <a href="#record" data-tab="record">Record</a>
+        <a href="#nba" data-tab="nba">NBA Test</a>
         <a href="#wire" data-tab="wire">News wire</a>
         <a href="#method" data-tab="method">How it works</a>
       </nav>
@@ -81,6 +82,32 @@
     </section>
 
     <!-- WIRE -->
+    <!-- NBA TEST -->
+    <section class="view" id="view-nba" aria-labelledby="nba-title" hidden>
+      <div class="board-head">
+        <div>
+          <h1 id="nba-title" class="week-title">NBA Test</h1>
+          <p class="week-sub" id="nba-sub"></p>
+        </div>
+        <span class="tag test-tag">Paper only</span>
+      </div>
+      <p class="lede">We're testing the model on the NBA before it goes live. Same method as our NFL picks: exchange prices
+        against Pinnacle's no-margin line, 30 to 60 minutes before tip-off. These bets are tracked and graded here, but they
+        aren't sent to Discord and don't count in the record. NBA goes live once 100 paper bets beat the closing line on average.</p>
+      <div class="panel goal">
+        <div class="goal-head"><span><b id="nba-goal-n">0 of 100</b> bets graded against the closing line</span><span id="nba-goal-verdict"></span></div>
+        <div class="goal-track" role="progressbar" aria-label="Paper bets graded" aria-valuemin="0" aria-valuemax="100" id="nba-goal-bar"><div class="goal-fill" id="nba-goal-fill"></div></div>
+      </div>
+      <div class="stats" id="nba-stats"></div>
+      <div class="weeks" role="tablist" aria-label="Game night" id="nba-nights"></div>
+      <div id="nba-tickets" class="tickets" aria-live="polite"></div>
+      <div class="panel">
+        <h2 class="h2">By market</h2>
+        <table class="table" id="nba-type-table"></table>
+      </div>
+    </section>
+
+    <!-- WIRE -->
     <section class="view" id="view-wire" aria-labelledby="wire-title" hidden>
       <h1 id="wire-title" class="page-title">News wire</h1>
       <p class="lede">Quarterback and injury news the model reacted to. A starting-QB change triggers a fresh look at every line;
@@ -104,6 +131,9 @@
       <h2 class="h2">Grading</h2>
       <p>Results come from official box scores. Closing-line value compares our price with the no-margin closing price at
         Pinnacle. Picks marked "paper" are tracked but not counted.</p>
+      <h2 class="h2">NBA Test</h2>
+      <p>NBA picks are on paper while we test them. Every bet the model would make is posted and graded on the NBA Test tab,
+        but none go to Discord or into the record until 100 of them beat the closing line on average.</p>
       <h2 class="h2">Units</h2>
       <p>Every stake and result is in units, so the record means the same thing whatever your bankroll. One unit is 2% of
         your bankroll. With a $500 bankroll, 1 unit is $10: a 0.5u pick is a $5 bet, a 0.75u Strong pick is $7.50, and a

@@ -1,5 +1,6 @@
 (() => {
   const D = window.__DATA__ || { picks: { weeks: [] }, summary: {}, wire: { items: [] } };
+  D.nba = D.nba || { summary: {}, nights: [], by_type: [] };
   const CFG = window.SITE_CONFIG || {};
   const $ = (s, el = document) => el.querySelector(s);
   const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -22,16 +23,16 @@
   const fromHash = () => { const m = location.hash.match(/week-(\d+)/); if (m) week = +m[1]; };
   fromHash();
 
-  function untilKick(iso) {
-    const ms = new Date(iso) - Date.now();
-    if (ms <= 0) return "Kicked off";
+  function untilKick(iso, nba) {
+    const ms = new Date(iso) - Date.now(), w = nba ? "Tip-off" : "Kickoff";
+    if (ms <= 0) return nba ? "Tipped off" : "Kicked off";
     const h = Math.floor(ms / 36e5), d = Math.floor(h / 24);
-    return d >= 1 ? `Kickoff in ${d}d ${h % 24}h` : `Kickoff in ${h}h ${Math.floor((ms % 36e5) / 6e4)}m`;
+    return d >= 1 ? `${w} in ${d}d ${h % 24}h` : `${w} in ${h}h ${Math.floor((ms % 36e5) / 6e4)}m`;
   }
 
   function clvTrack(p) {
     if (p.clv == null) {
-      const why = p.status === "pending" ? "Closing price comes in at kickoff" : p.price === "Pick'em" ? "No closing price for pick'em apps" : "No closing price captured";
+      const why = p.status === "pending" ? `Closing price comes in at ${p.kind === "nba" ? "tip-off" : "kickoff"}` : p.price === "Pick'em" ? "No closing price for pick'em apps" : "No closing price captured";
       return `<div class="clv"><div class="clv-track"></div><div class="clv-label"><span>${why}</span></div></div>`;
     }
     const span = Math.max(4, Math.abs(p.clv) + 1.5);
@@ -49,7 +50,8 @@
 
   function ticket(p) {
     const st = p.status === "pending" ? "open" : p.status;
-    const tierTag = p.kind === "paper" ? '<span class="tag">Paper</span>'
+    const tierTag = p.kind === "nba" ? `<span class="tag T">Paper</span>${p.tier === "A" ? '<span class="tag A">Strong</span>' : ""}`
+      : p.kind === "paper" ? '<span class="tag">Paper</span>'
       : p.kind === "teaser" ? '<span class="tag T">Teaser</span>'
       : p.tier === "A" ? '<span class="tag A">Strong</span>' : p.tier === "B" ? '<span class="tag">Value</span>' : "";
     const stake = p.stake ? `${+(p.stake / 10).toFixed(2)}u` : "";
@@ -58,7 +60,7 @@
     const fresh = Date.now() - new Date(p.posted) < 2 * 36e5 ? " fresh" : "";
     const posted = new Date(p.posted).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" });
     const stub = st === "open"
-      ? `<div class="result open">${ICON.open}<span>Open</span></div><div class="stub-line">${untilKick(p.kick)}</div>`
+      ? `<div class="result open">${ICON.open}<span>Open</span></div><div class="stub-line">${untilKick(p.kick, p.kind === "nba")}</div>`
       : `<div class="result ${st}">${ICON[st] || ""}<span>${STATUS[st]}</span></div>
          <div class="stub-line">${p.actual ? `<b>${esc(p.actual)}</b>` : ""}${p.units != null && p.kind !== "paper" ? ` <span>${fmtU(p.units)}</span>` : ""}</div>`;
     return `<article class="ticket ${st} ${p.kind}${fresh}" id="pick-${esc(p.id)}">
@@ -68,7 +70,7 @@
         <h3 class="t-bet">${esc(p.bet)}</h3>
         <div class="t-price"><span><span class="odds">${esc(p.venue)} ${esc(p.price)}</span></span>${stake ? `<span>${stake}</span>` : ""}${edge}${worst}</div>
         <p class="t-why">${esc(p.analysis)}</p>
-        <p class="t-posted">Posted ${esc(posted)}${CFG.repo ? `, <a href="${esc(CFG.repo)}/commits/main/site/data/picks.json">timestamp</a>` : ""}</p>
+        <p class="t-posted">Posted ${esc(posted)}${CFG.repo ? `, <a href="${esc(CFG.repo)}/commits/main/${p.kind === "nba" ? "data/nba/paper.csv" : "site/data/picks.json"}">timestamp</a>` : ""}</p>
       </div>
       <div class="t-stub">${stub}${p.kind === "teaser" ? "" : clvTrack(p)}</div>
     </article>`;
@@ -96,7 +98,9 @@
   }
 
   document.addEventListener("click", (e) => {
-    const b = e.target.closest(".week-pill");
+    const n = e.target.closest(".week-pill[data-night]");
+    if (n) { night = n.dataset.night; renderNba(); return; }
+    const b = e.target.closest(".week-pill[data-week]");
     if (b) { week = +b.dataset.week; history.replaceState(null, "", `#week-${week}`); renderBoard(); }
     const f = e.target.closest(".chip");
     if (f) { filter = f.dataset.filter; document.querySelectorAll(".chip").forEach((c) => c.classList.toggle("on", c === f)); renderBoard(); }
@@ -172,6 +176,38 @@
         : '<tr><td colspan="4">No graded picks yet.</td></tr>') + "</tbody>";
   }
 
+  /* ---------------- NBA Test ---------------- */
+  let night = null;
+  function renderNba() {
+    const N = D.nba, s = N.summary || {}, nights = N.nights || [];
+    const goal = s.goal || 100, n = s.graded_clv || 0;
+    $("#nba-goal-n").textContent = `${Math.min(n, goal)} of ${goal}`;
+    const fill = $("#nba-goal-fill");
+    fill.style.width = `${Math.min(100, (n / goal) * 100)}%`;
+    fill.className = `goal-fill${n ? (s.clv > 0 ? " beat" : " lag") : ""}`;
+    $("#nba-goal-bar").setAttribute("aria-valuenow", Math.min(n, goal));
+    const v = $("#nba-goal-verdict");
+    v.className = "verdict";
+    if (!n) v.textContent = "First bets grade at tip-off";
+    else if (n >= goal) { v.textContent = s.clv > 0 ? "Passed: ready to go live" : "Not passing: stays on paper"; v.classList.add(s.clv > 0 ? "beat" : "lag"); }
+    else { v.textContent = `Average so far ${fmtPts(s.clv)} pts`; v.classList.add(s.clv > 0 ? "beat" : "lag"); }
+    const items = [[s.w + s.l + (s.p || 0) ? rec(s) : "–", "Paper record"], [s.w + s.l ? fmtU(s.units) : "–", "Paper profit in units"],
+      [s.roi == null ? "–" : `${s.roi > 0 ? "+" : ""}${s.roi}%`, "Return on stakes"],
+      [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average closing-line value"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat the close"]];
+    $("#nba-stats").innerHTML = items.map(([val, k]) => `<div class="stat"><div class="v">${val}</div><div class="k">${k}</div></div>`).join("");
+    const cur = nights.find((x) => x.night === night) || nights[0];
+    night = cur ? cur.night : null;
+    $("#nba-sub").textContent = cur ? `${cur.label}: ${cur.picks.length} paper bet${cur.picks.length === 1 ? "" : "s"}${cur.record.w + cur.record.l ? `, ${rec(cur.record)}` : ""}` : "Tracking starts with the first game night.";
+    $("#nba-nights").innerHTML = nights.map((x) => `<button class="week-pill" role="tab" aria-selected="${x.night === night}" data-night="${x.night}">
+        ${esc(x.label)}<small>${x.record.w + x.record.l ? rec(x.record) : `${x.picks.length} open`}</small></button>`).join("");
+    $("#nba-tickets").innerHTML = cur ? cur.picks.map(ticket).join("")
+      : '<div class="empty"><b>No NBA paper bets yet.</b>The model checks every game 30 to 60 minutes before tip-off. Bets it would make show up here, then get graded after the game.</div>';
+    const t = N.by_type || [];
+    $("#nba-type-table").innerHTML = `<thead><tr><th scope="col">Market</th><th scope="col">Record</th><th scope="col">Units</th><th scope="col">Avg CLV</th></tr></thead><tbody>` +
+      (t.length ? t.map((r) => `<tr><td>${esc(r.type)}</td><td>${rec(r)}</td><td>${fmtU(r.units)}</td><td>${r.clv == null ? "–" : fmtPts(r.clv)}</td></tr>`).join("")
+        : '<tr><td colspan="4">No graded paper bets yet.</td></tr>') + "</tbody>";
+  }
+
   /* ---------------- wire ---------------- */
   function ago(iso) {
     const m = Math.round((Date.now() - new Date(iso)) / 6e4);
@@ -209,7 +245,7 @@
   }
 
   /* ---------------- routing ---------------- */
-  const VIEWS = ["board", "record", "wire", "method"];
+  const VIEWS = ["board", "record", "nba", "wire", "method"];
   function route() {
     const h = location.hash.replace("#", "");
     if (h === "alerts") { $("#alerts").scrollIntoView({ behavior: "smooth" }); return; }
@@ -220,6 +256,7 @@
     if (v === "board") renderBoard();
     if (v === "record") renderRecord();
     if (v === "wire") renderWire();
+    if (v === "nba") renderNba();
     if (!h.startsWith("pick-")) window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", route);

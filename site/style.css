@@ -123,6 +123,16 @@ main { max-width: 1080px; margin: 0 auto; padding: 22px 16px 40px; }
 
 /* ---------- record ---------- */
 .page-title { font-family: var(--display); font-weight: 800; font-stretch: 85%; font-size: clamp(2.2rem, 7vw, 3.4rem); margin: 0 0 6px; line-height: 1; }
+#view-nba .lede { margin-top: 14px; }
+.test-tag { align-self: flex-start; background: rgba(143, 162, 255, .16); color: var(--open); font-size: .85rem; padding: 4px 12px; }
+.goal-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--ink-2); margin-bottom: 10px; }
+.goal-head b { color: var(--ink); }
+.goal-track { height: 12px; border-radius: 6px; background: var(--raised); overflow: hidden; }
+.goal-fill { height: 100%; width: 0; border-radius: 6px; background: var(--open); transition: width .4s; }
+.goal-fill.beat { background: var(--beat); }
+.goal-fill.lag { background: var(--lag); }
+.verdict.beat { color: var(--win); font-weight: 700; }
+.verdict.lag { color: var(--loss); font-weight: 700; }
 .lede { color: var(--ink-2); max-width: 68ch; margin: 0 0 20px; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .stat { background: var(--panel); border-radius: var(--r-md); padding: 14px 16px; }
