@@ -1,6 +1,6 @@
 # Closing Line Club
 
-NFL picks with receipts: https://grahambirch99.github.io/beat-the-close/
+NFL picks with receipts: https://grahambirch99.github.io/closing-line-club/
 
 Each pick is posted here before kickoff, graded after the game, and scored by closing-line value. This repo's
 commit history is the timestamp record. The model, odds data and research live in a separate private repository.
