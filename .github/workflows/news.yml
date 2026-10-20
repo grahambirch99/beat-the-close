@@ -10,6 +10,9 @@ on:
       minutes:
         description: "How long to watch"
         default: "27"
+      test_dispatch:
+        description: "yes = check the token can start a (free) close check in the private repo"
+        default: "no"
 
 concurrency:
   group: news-watch
@@ -33,6 +36,11 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+      - name: Test dispatch into the private repo
+        if: ${{ inputs.test_dispatch == 'yes' }}
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        run: gh api -X POST repos/grahambirch99/nfl-odds-logger/actions/workflows/odds.yml/dispatches -f ref=main -f "inputs[mode]=close"
       - name: Watch
         env:
           GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
