@@ -52,7 +52,7 @@
     const tierTag = p.kind === "paper" ? '<span class="tag">Paper</span>'
       : p.kind === "teaser" ? '<span class="tag T">Teaser</span>'
       : p.tier === "A" ? '<span class="tag A">Strong</span>' : p.tier === "B" ? '<span class="tag">Value</span>' : "";
-    const stake = p.stake ? `$${p.stake % 1 ? p.stake.toFixed(2) : p.stake}` : "";
+    const stake = p.stake ? `${+(p.stake / 10).toFixed(2)}u` : "";
     const worst = st === "open" && p.worst ? `<span>Take ${esc(p.worst)} or better</span>` : "";
     const edge = p.edge != null && p.kind !== "teaser" ? `<span>${p.edge > 0 ? "+" : ""}${p.edge}% edge</span>` : "";
     const fresh = Date.now() - new Date(p.posted) < 2 * 36e5 ? " fresh" : "";
@@ -90,7 +90,7 @@
     if (!html) {
       html = wk.picks.length
         ? `<div class="empty"><b>Nothing matches that filter.</b>Pick another filter to see this week's ${wk.picks.length} picks.</div>`
-        : `<div class="empty"><b>No picks posted for Week ${wk.week} yet.</b>Most picks post on Sunday morning after inactives. Get them by email below.</div>`;
+        : `<div class="empty"><b>No picks posted for Week ${wk.week} yet.</b>Most picks post on Sunday morning after inactives. Join the Discord to get them the moment they post.</div>`;
     }
     $("#tickets").innerHTML = html;
   }
@@ -185,14 +185,9 @@
   }
 
   /* ---------------- alerts ---------------- */
-  if (CFG.discord) { const d = $("#discord-btn"); d.href = CFG.discord; d.hidden = false; d.target = "_blank"; d.rel = "noopener"; }
-  const form = $("#signup");
-  if (CFG.buttondown) {
-    form.action = `https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(CFG.buttondown)}`;
-    $("#signup-note").textContent = "You'll get a confirmation email first.";
-  } else {
-    form.querySelectorAll("input,button").forEach((x) => (x.disabled = true));
-    $("#signup-note").textContent = "Email signup opens shortly.";
+  if (CFG.discord) {
+    const d = $("#discord-btn"); d.href = CFG.discord; d.hidden = false; d.target = "_blank"; d.rel = "noopener";
+    const t = $("#top-discord"); t.href = CFG.discord; t.target = "_blank"; t.rel = "noopener";
   }
 
   /* ---------------- routing ---------------- */

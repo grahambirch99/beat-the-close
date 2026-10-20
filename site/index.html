@@ -27,7 +27,7 @@
         <a href="#wire" data-tab="wire">News wire</a>
         <a href="#method" data-tab="method">How it works</a>
       </nav>
-      <a class="alert-btn" href="#alerts">Get alerts</a>
+      <a class="alert-btn" id="top-discord" href="#alerts">Join the Discord</a>
     </div>
   </header>
 
@@ -59,7 +59,7 @@
       <div class="stats" id="stats"></div>
       <div class="panel chart-panel">
         <h2 class="h2">Units over time</h2>
-        <p class="note">Running profit in units ($10 per unit), one step per graded pick.</p>
+        <p class="note">Running profit in units, one step per graded pick.</p>
         <div id="units-chart" class="chart"></div>
       </div>
       <div class="panel chart-panel">
@@ -96,7 +96,11 @@
         has won about 78% of legs since 2014, above the 74% needed at the usual price.</p>
       <h2 class="h2">Grading</h2>
       <p>Results come from official box scores. Closing-line value compares our price with the no-margin closing price at
-        Pinnacle. Picks marked "paper" are tracked but not counted. Stakes are flat: $5 to $7.50 per pick.</p>
+        Pinnacle. Picks marked "paper" are tracked but not counted.</p>
+      <h2 class="h2">Units</h2>
+      <p>Every stake and result is in units, so the record means the same thing whatever your bankroll. One unit is 2% of
+        your bankroll. With a $500 bankroll, 1 unit is $10: a 0.5u pick is a $5 bet, a 0.75u Strong pick is $7.50, and a
+        +1.2u week means you're up $12. Picks are flat 0.5u to 0.75u, and long shots (+150 or longer) stay at 0.5u.</p>
       <h2 class="h2">Receipts</h2>
       <p>Every pick is committed to a public GitHub repository when it appears here, before kickoff, so the timestamps can be
         checked.</p>
@@ -108,18 +112,9 @@
         <h2 id="alerts-title" class="h2">Get picks when news breaks</h2>
         <p class="note">New picks post to our Discord the moment they go live, including the ones triggered by injury and weather
           news, and every result follows when the game is graded.</p>
-        <a class="discord-btn" id="discord-btn" href="#" hidden>Join the Discord</a>
       </div>
       <div>
-        <p class="note small">Or get them by email:</p>
-        <form class="signup" id="signup" method="post" target="_blank">
-          <label class="sr" for="email">Email address</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-          <input type="hidden" name="tag" value="nfl-alerts">
-          <button type="submit">Subscribe</button>
-        </form>
-        <p class="note small signup-note" id="signup-note"></p>
-        <p class="note small">Prefer a feed? Add <a href="feed.xml">the RSS feed</a> to any reader.</p>
+        <a class="discord-btn" id="discord-btn" href="#" hidden>Join the Discord</a>
       </div>
     </section>
   </main>
