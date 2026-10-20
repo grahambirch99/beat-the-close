@@ -172,3 +172,5 @@ main { max-width: 1080px; margin: 0 auto; padding: 22px 16px 40px; }
   @keyframes drop { from { transform: translateY(-8px); opacity: 0; } to { transform: none; opacity: 1; } }
 }
 .t-meta + .t-bet { margin-top: 10px; }
+.discord-btn { display: inline-flex; align-items: center; gap: 8px; background: #5865F2; color: #fff; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: var(--r-sm); margin-top: 4px; }
+.discord-btn:hover { background: #4752C4; }

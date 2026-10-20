@@ -184,7 +184,8 @@
       : '<li><span class="tag kind">Quiet</span><span>No quarterback or injury news has triggered a check yet.</span><span class="when">The wire updates every 30 minutes from early morning to evening.</span></li>';
   }
 
-  /* ---------------- alerts form ---------------- */
+  /* ---------------- alerts ---------------- */
+  if (CFG.discord) { const d = $("#discord-btn"); d.href = CFG.discord; d.hidden = false; d.target = "_blank"; d.rel = "noopener"; }
   const form = $("#signup");
   if (CFG.buttondown) {
     form.action = `https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(CFG.buttondown)}`;
