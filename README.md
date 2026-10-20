@@ -1,4 +1,4 @@
-# Beat the Close
+# Closing Line Club
 
 NFL picks with receipts: https://grahambirch99.github.io/beat-the-close/
 

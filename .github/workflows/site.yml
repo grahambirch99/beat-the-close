@@ -1,6 +1,6 @@
 name: site
 
-# Builds the Beat the Close site from the PRIVATE pipeline repo (grahambirch99/nfl-odds-logger, read with the
+# Builds the Closing Line Club site from the PRIVATE pipeline repo (grahambirch99/nfl-odds-logger, read with the
 # PRIVATE_REPO_TOKEN secret) and deploys it to GitHub Pages. Only the built site (picks after a 20-minute delay,
 # results, CLV) is committed here; raw odds, bankroll and pending picks stay private.
 on:
