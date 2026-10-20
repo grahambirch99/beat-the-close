@@ -1,0 +1,56 @@
+name: news-watch
+
+# Free NFL news watcher: Sleeper injury statuses, RotoWire RSS, Bluesky reporters. Every 30 min from ~5 AM to ~9 PM PT,
+# polling every 3 min. QB / injury news dispatches a fresh odds pull in the private pipeline repo (via PRIVATE_REPO_TOKEN).
+on:
+  schedule:
+    - cron: "*/30 12-23,0-4 * * *"
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "How long to watch"
+        default: "27"
+
+concurrency:
+  group: news-watch
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: grahambirch99/nfl-odds-logger
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: p
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Watch
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          PIPELINE_REPO: grahambirch99/nfl-odds-logger
+          NEWS_DIR: data/news
+          NEWS_SOURCES: p/data/news/sources.json
+          ODDS_DB: p/data/odds.db
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DISPATCH: "1"
+          MINUTES: ${{ inputs.minutes || '27' }}
+        run: python p/news_watch.py --minutes "$MINUTES" --tick 180
+      - name: Save
+        if: always()
+        run: |
+          git config user.name  "beat-the-close"
+          git config user.email "beat-the-close@users.noreply.github.com"
+          git add data/news
+          if ! git diff --cached --quiet; then
+            git commit -qm "news $(date -u +%Y-%m-%dT%H:%MZ)"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+          fi

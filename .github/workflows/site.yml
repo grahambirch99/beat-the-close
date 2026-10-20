@@ -1,0 +1,73 @@
+name: site
+
+# Builds the Beat the Close site from the PRIVATE pipeline repo (grahambirch99/nfl-odds-logger, read with the
+# PRIVATE_REPO_TOKEN secret) and deploys it to GitHub Pages. Only the built site (picks after a 20-minute delay,
+# results, CLV) is committed here; raw odds, bankroll and pending picks stay private.
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: site
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          repository: grahambirch99/nfl-odds-logger
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: p
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Build
+        env:
+          SITE_DIR: site
+          PICKS_LEDGER: p/data/picks/ledger.csv
+          NEWS_FEED: data/news/feed.jsonl
+          PUBLISH_DELAY_MIN: "20"
+        run: |
+          mkdir -p site
+          cp p/site/*.html p/site/*.css p/site/*.js p/site/*.svg site/
+          python p/site_build.py
+      - name: Commit (timestamps the picks publicly)
+        run: |
+          git config user.name  "beat-the-close"
+          git config user.email "beat-the-close@users.noreply.github.com"
+          git add site
+          if ! git diff --cached --quiet; then
+            git commit -qm "site update $(date -u +%Y-%m-%dT%H:%MZ)"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+          fi
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
+      - name: Email subscribers about new picks
+        env:
+          SITE_DIR: site
+          EMAIL_STATE: data/site/emailed.json
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: |
+          python p/email_alerts.py
+          git add data/site
+          if ! git diff --cached --quiet; then
+            git commit -qm "email state $(date -u +%H:%MZ)"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+          fi
