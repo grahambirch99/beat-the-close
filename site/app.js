@@ -184,6 +184,24 @@
       : '<li><span class="tag kind">Quiet</span><span>No quarterback or injury news has triggered a check yet.</span><span class="when">The wire updates every 30 minutes from early morning to evening.</span></li>';
   }
 
+  /* ---------------- where we bet (referral links) ---------------- */
+  const apps = (CFG.apps || []).filter((a) => a.url || a.code);
+  if (apps.length) {
+    $("#apps").hidden = false;
+    $("#app-grid").innerHTML = apps.map((a) => `<div class="app">
+        <div class="app-name">${esc(a.name)}</div><div class="app-what">${esc(a.what || "")}</div>
+        ${a.offer ? `<div class="app-offer">${esc(a.offer)}</div>` : ""}
+        <div class="app-row">
+          ${a.code ? `<button class="app-code" data-code="${esc(a.code)}" title="Copy code">Code: ${esc(a.code)}</button>` : ""}
+          ${a.url ? `<a class="app-go" href="${esc(a.url)}" target="_blank" rel="noopener sponsored">Sign up</a>` : ""}
+        </div></div>`).join("");
+    $("#app-grid").addEventListener("click", (e) => {
+      const b = e.target.closest(".app-code");
+      if (!b) return;
+      navigator.clipboard?.writeText(b.dataset.code).then(() => { const t = b.textContent; b.textContent = "Copied"; setTimeout(() => (b.textContent = t), 1400); });
+    });
+  }
+
   /* ---------------- alerts ---------------- */
   if (CFG.discord) {
     const d = $("#discord-btn"); d.href = CFG.discord; d.hidden = false; d.target = "_blank"; d.rel = "noopener";

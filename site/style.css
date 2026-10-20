@@ -110,6 +110,17 @@ main { max-width: 1080px; margin: 0 auto; padding: 22px 16px 40px; }
 .clv-label { display: flex; justify-content: space-between; color: var(--ink-3); font-size: .78rem; margin-top: 4px; }
 .clv-label b { color: var(--ink); font-weight: 700; }
 
+/* ---------- where we bet ---------- */
+.apps { margin-top: 30px; }
+.app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 10px 0; }
+.app { background: var(--panel); border-radius: var(--r-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.app-name { font-family: var(--display); font-weight: 800; font-size: 1.2rem; line-height: 1.1; }
+.app-what { color: var(--ink-3); font-size: .85rem; }
+.app-offer { color: var(--ink); font-weight: 600; }
+.app-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+.app-code { border: 1px dashed var(--line); background: var(--bg); color: var(--ink); border-radius: 8px; padding: 6px 10px; font: 700 .9rem var(--body); cursor: pointer; }
+.app-go { background: var(--flood); color: var(--flood-ink); font-weight: 700; text-decoration: none; padding: 7px 14px; border-radius: var(--r-sm); }
+
 /* ---------- record ---------- */
 .page-title { font-family: var(--display); font-weight: 800; font-stretch: 85%; font-size: clamp(2.2rem, 7vw, 3.4rem); margin: 0 0 6px; line-height: 1; }
 .lede { color: var(--ink-2); max-width: 68ch; margin: 0 0 20px; }
