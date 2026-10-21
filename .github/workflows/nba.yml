@@ -45,16 +45,30 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Wait for the tip-off window
-        id: wait
-        run: python p/nba_wait.py wait --budget 300 >> "$GITHUB_OUTPUT"
       - name: Restore NBA odds cache
-        if: steps.wait.outputs.go == '1'
         uses: actions/cache/restore@v4
         with:
           path: nba-cache
           key: nba-db-${{ github.run_id }}
           restore-keys: nba-db-
+      - name: Grade earlier bets (closing prices, ESPN results)
+        env:
+          ODDS_DB: nba-cache/nba.db
+          NBA_OUT: data/nba
+        run: |
+          [ -f nba-cache/nba.db ] || { echo "no NBA data yet"; exit 0; }
+          python p/nba_paper.py > /dev/null || true
+          git config user.name  "closing-line-club"
+          git config user.email "closing-line-club@users.noreply.github.com"
+          git add data/nba
+          if ! git diff --cached --quiet; then
+            git commit -qm "nba paper graded $(date -u +%Y-%m-%dT%H:%MZ)"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+            gh api -X POST "repos/${{ github.repository }}/actions/workflows/site.yml/dispatches" -f ref=main || true
+          fi
+      - name: Wait for the tip-off window
+        id: wait
+        run: python p/nba_wait.py wait --budget 290 >> "$GITHUB_OUTPUT"
       - name: Game night
         if: steps.wait.outputs.go == '1'
         env:
