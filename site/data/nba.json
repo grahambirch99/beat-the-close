@@ -1,10 +1,10 @@
 {
  "summary": {
-  "w": 0,
-  "l": 0,
+  "w": 1,
+  "l": 5,
   "p": 0,
-  "units": 0,
-  "roi": null,
+  "units": -1.85,
+  "roi": -52.9,
   "clv": 1.84,
   "beat": 100,
   "n_clv": 5,
@@ -16,35 +16,35 @@
   {
    "type": "Assists",
    "w": 0,
-   "l": 0,
+   "l": 1,
    "p": 0,
-   "units": 0,
-   "roi": null,
-   "clv": null,
-   "beat": null,
-   "n_clv": 0
+   "units": -0.5,
+   "roi": -100.0,
+   "clv": 1.88,
+   "beat": 100,
+   "n_clv": 1
   },
   {
    "type": "Points",
-   "w": 0,
-   "l": 0,
+   "w": 1,
+   "l": 2,
    "p": 0,
-   "units": 0,
-   "roi": null,
-   "clv": null,
-   "beat": null,
-   "n_clv": 0
+   "units": -0.1,
+   "roi": -5.7,
+   "clv": 1.51,
+   "beat": 100,
+   "n_clv": 2
   },
   {
    "type": "Rebounds",
    "w": 0,
-   "l": 0,
+   "l": 2,
    "p": 0,
-   "units": 0,
-   "roi": null,
-   "clv": null,
-   "beat": null,
-   "n_clv": 0
+   "units": -1.25,
+   "roi": -100.0,
+   "clv": 2.14,
+   "beat": 100,
+   "n_clv": 2
   }
  ],
  "nights": [
@@ -52,14 +52,14 @@
    "night": "2026-10-20",
    "label": "Tue Oct 20",
    "record": {
-    "w": 0,
-    "l": 0,
+    "w": 1,
+    "l": 5,
     "p": 0,
-    "units": 0,
-    "roi": null,
-    "clv": null,
-    "beat": null,
-    "n_clv": 0
+    "units": -1.85,
+    "roi": -52.9,
+    "clv": 1.84,
+    "beat": 100,
+    "n_clv": 5
    },
    "picks": [
     {
@@ -81,10 +81,10 @@
      "edge": 5.6,
      "worst": "",
      "analysis": "Novig's price was 5.6% better than the sharp-book consensus line, 47 minutes before tip.",
-     "status": "pending",
-     "actual": "",
+     "status": "W",
+     "actual": "9 pts",
      "clv": null,
-     "units": null,
+     "units": 0.9,
      "posted": "2026-10-21T00:42:56Z"
     },
     {
@@ -106,10 +106,10 @@
      "edge": 4.5,
      "worst": "",
      "analysis": "Novig's price was 4.5% better than Pinnacle's no-margin line, 47 minutes before tip.",
-     "status": "pending",
-     "actual": "",
+     "status": "L",
+     "actual": "6 reb",
      "clv": 2.33,
-     "units": null,
+     "units": -0.75,
      "posted": "2026-10-21T00:42:56Z"
     },
     {
@@ -131,10 +131,10 @@
      "edge": 3.9,
      "worst": "",
      "analysis": "Novig's price was 3.9% better than Pinnacle's no-margin line, 47 minutes before tip.",
-     "status": "pending",
-     "actual": "",
+     "status": "L",
+     "actual": "1 ast",
      "clv": 1.88,
-     "units": null,
+     "units": -0.5,
      "posted": "2026-10-21T00:42:56Z"
     },
     {
@@ -156,10 +156,10 @@
      "edge": 3.8,
      "worst": "",
      "analysis": "Novig's price was 3.8% better than Pinnacle's no-margin line, 47 minutes before tip.",
-     "status": "pending",
-     "actual": "",
+     "status": "L",
+     "actual": "7 reb",
      "clv": 1.95,
-     "units": null,
+     "units": -0.5,
      "posted": "2026-10-21T00:42:56Z"
     },
     {
@@ -181,10 +181,10 @@
      "edge": 3.5,
      "worst": "",
      "analysis": "Novig's price was 3.5% better than Pinnacle's no-margin line, 47 minutes before tip.",
-     "status": "pending",
-     "actual": "",
+     "status": "L",
+     "actual": "7 pts",
      "clv": 1.61,
-     "units": null,
+     "units": -0.5,
      "posted": "2026-10-21T00:42:56Z"
     },
     {
@@ -206,10 +206,10 @@
      "edge": 3.1,
      "worst": "",
      "analysis": "Novig's price was 3.1% better than Pinnacle's no-margin line, 47 minutes before tip.",
-     "status": "pending",
-     "actual": "",
+     "status": "L",
+     "actual": "12 pts",
      "clv": 1.41,
-     "units": null,
+     "units": -0.5,
      "posted": "2026-10-21T00:42:56Z"
     }
    ]
