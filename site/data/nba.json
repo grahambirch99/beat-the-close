@@ -5,12 +5,12 @@
   "p": 0,
   "units": -1.85,
   "roi": -52.9,
-  "clv": 1.84,
+  "clv": 1.79,
   "beat": 100,
-  "n_clv": 5,
+  "n_clv": 7,
   "bets": 25,
   "goal": 100,
-  "graded_clv": 5
+  "graded_clv": 7
  },
  "by_type": [
   {
@@ -108,7 +108,7 @@
      "analysis": "Novig's price was 5.8% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.53,
      "units": null,
      "posted": "2026-10-21T22:10:14Z"
     },
@@ -158,7 +158,7 @@
      "analysis": "Novig's price was 4.3% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.8,
      "units": null,
      "posted": "2026-10-21T22:10:14Z"
     },
