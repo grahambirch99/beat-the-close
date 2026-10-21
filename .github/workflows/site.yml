@@ -1,7 +1,8 @@
 name: site
 
 # Builds the Closing Line Club site from the PRIVATE pipeline repo (grahambirch99/nfl-odds-logger, read with the
-# PRIVATE_REPO_TOKEN secret) and deploys it to GitHub Pages. Only the built site (picks after a 20-minute delay,
+# PRIVATE_REPO_TOKEN secret) and deploys it to GitHub Pages. Started by the news watcher (every ~30 min, 5 AM-9 PM PT)
+# and the NBA job; when a pick is still inside its 20-minute delay, the run waits for it and starts the next build. Only the built site (picks after a 20-minute delay,
 # results, CLV) is committed here; raw odds, bankroll and pending picks stay private.
 on:
   schedule:
@@ -16,11 +17,12 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  actions: write
 
 jobs:
   build:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 35
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -41,6 +43,7 @@ jobs:
           PICKS_LEDGER: p/data/picks/ledger.csv
           NEWS_FEED: data/news/feed.jsonl
           PUBLISH_DELAY_MIN: "20"
+          NEXT_RELEASE_FILE: next_release.txt
         run: |
           mkdir -p site
           cp p/site/*.html p/site/*.css p/site/*.js p/site/*.svg site/
@@ -71,3 +74,14 @@ jobs:
             git commit -qm "email state $(date -u +%H:%MZ)"
             for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
           fi
+      - name: Rebuild when held picks are due
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NEXT=$(cat next_release.txt 2>/dev/null || true)
+          [ -z "$NEXT" ] && { echo "no picks waiting"; exit 0; }
+          WAIT=$(( $(date -d "$NEXT" +%s) - $(date +%s) + 30 ))
+          echo "next pick releases $NEXT (in ${WAIT}s)"
+          if [ "$WAIT" -gt 0 ] && [ "$WAIT" -lt 1800 ]; then sleep "$WAIT"; fi
+          gh api -X POST "repos/${{ github.repository }}/actions/workflows/site.yml/dispatches" -f ref=main

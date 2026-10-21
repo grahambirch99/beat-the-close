@@ -1,18 +1,21 @@
 name: nba-paper
 
-# NBA paper tracking (not published as picks). Nightly from ~3:30 PM PT (~2:30 PM in winter): pulls each game's lines
-# and points/rebounds/assists props 30-60 min before tip, captures closing prices, logs edges and their CLV.
-# Raw odds stay in a GitHub Actions cache (never committed); only derived results go to data/nba/.
-# Needs the ODDS_API_KEY secret in this repo (same key as the private pipeline).
-# Paper bets (data/nba/paper.csv) are committed every 10 minutes during the night and shown on the site's NBA Test tab.
-# They are never sent to Discord. Results are graded from ESPN box scores on the next night's run.
+# NBA paper tracking ("NBA Test" tab; never sent to Discord).
+# GitHub's cron runs hours late, so each run chains itself: it sleeps (free in a public repo) until ~75 min before the
+# next tip, runs the game-night loop (lines + points/rebounds/assists props 30-60 min before each tip, closing prices),
+# then starts a fresh run if games are still to come. The crons below only (re)start the chain each morning.
+# Paper bets (data/nba/paper.csv) are committed every 10 minutes, so each is timestamped before tip-off, and the site
+# is rebuilt after each commit. Results are graded from ESPN box scores on the next night.
+# Raw odds stay in a GitHub Actions cache (never committed). Needs the ODDS_API_KEY secret.
 on:
   schedule:
-    - cron: "30 22 * * *"
+    - cron: "0 13 * * *"    # ~6 AM PT
+    - cron: "0 17 * * *"    # ~10 AM PT
+    - cron: "30 21 * * *"   # ~2:30 PM PT
   workflow_dispatch:
     inputs:
       minutes:
-        description: "Max minutes to run"
+        description: "Max minutes for the game-night loop"
         default: "330"
 
 concurrency:
@@ -21,11 +24,16 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   night:
     runs-on: ubuntu-24.04
-    timeout-minutes: 345
+    timeout-minutes: 355
+    env:
+      ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+      ODDS_SPORT: basketball_nba
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/checkout@v5
@@ -37,16 +45,19 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+      - name: Wait for the tip-off window
+        id: wait
+        run: python p/nba_wait.py wait --budget 300 >> "$GITHUB_OUTPUT"
       - name: Restore NBA odds cache
+        if: steps.wait.outputs.go == '1'
         uses: actions/cache/restore@v4
         with:
           path: nba-cache
           key: nba-db-${{ github.run_id }}
           restore-keys: nba-db-
       - name: Game night
+        if: steps.wait.outputs.go == '1'
         env:
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          ODDS_SPORT: basketball_nba
           ODDS_DB: nba-cache/nba.db
           OPS_STATE: nba-cache/state.json
           ODDS_DAYS_AHEAD: "0.7"
@@ -58,24 +69,26 @@ jobs:
           ALERTS_NO_LEDGER: "1"
           ALERTS_DIR: nba-cache/alerts
           MIN_CREDITS_RESERVE: "2000"
-          MINUTES: ${{ inputs.minutes || '330' }}
           NBA_OUT: data/nba
+          SLEPT: ${{ steps.wait.outputs.slept }}
         run: |
           mkdir -p nba-cache data/nba
           git config user.name  "closing-line-club"
           git config user.email "closing-line-club@users.noreply.github.com"
-          # Commit paper bets every 10 minutes during the night, so each one is timestamped before tip-off.
+          M=$(( 335 - ${SLEPT:-0} )); [ "$M" -gt "${{ inputs.minutes || '330' }}" ] && M=${{ inputs.minutes || '330' }}
+          # Commit paper bets every 10 minutes, so each one is timestamped before tip-off; then rebuild the site.
           ( while sleep 600; do
               [ -f nba-cache/nba.db ] && python p/nba_paper.py > /dev/null 2>&1 || true
               git add data/nba 2>/dev/null || true
               if ! git diff --cached --quiet; then
                 git commit -qm "nba paper bets $(date -u +%Y-%m-%dT%H:%MZ)"
                 for i in 1 2 3; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+                gh api -X POST "repos/${{ github.repository }}/actions/workflows/site.yml/dispatches" -f ref=main > /dev/null 2>&1 || true
               fi
             done ) &
-          python p/sunday_ops.py --max-minutes "$MINUTES" --tick 300
-      - name: Grade edges by CLV
-        if: always()
+          python p/sunday_ops.py --max-minutes "$M" --tick 300
+      - name: Grade edges (CLV now, results from ESPN)
+        if: always() && steps.wait.outputs.go == '1'
         env:
           ODDS_DB: nba-cache/nba.db
           NBA_OUT: data/nba
@@ -87,10 +100,20 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -qm "nba paper $(date -u +%Y-%m-%d)"
             for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+            gh api -X POST "repos/${{ github.repository }}/actions/workflows/site.yml/dispatches" -f ref=main || true
           fi
       - name: Save NBA odds cache
-        if: always()
+        if: always() && steps.wait.outputs.go == '1'
         uses: actions/cache/save@v4
         with:
           path: nba-cache
           key: nba-db-${{ github.run_id }}
+      - name: Continue the chain
+        if: always()
+        run: |
+          AGAIN="${{ steps.wait.outputs.again }}"
+          if [ "${{ steps.wait.outputs.go }}" = "1" ]; then AGAIN=$(python p/nba_wait.py more | sed -n 's/^again=//p'); fi
+          echo "again=$AGAIN"
+          if [ "$AGAIN" = "1" ]; then
+            gh api -X POST "repos/${{ github.repository }}/actions/workflows/nba.yml/dispatches" -f ref=main
+          fi

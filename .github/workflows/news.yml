@@ -1,7 +1,8 @@
 name: news-watch
 
-# Free NFL news watcher: Sleeper injury statuses, RotoWire RSS, Bluesky reporters. Every 30 min from ~5 AM to ~9 PM PT,
-# polling every 3 min. QB / injury news dispatches a fresh odds pull in the private pipeline repo (via PRIVATE_REPO_TOKEN).
+# Free NFL news watcher: Sleeper injury statuses, RotoWire RSS, Bluesky reporters. Watches continuously from ~5 AM to
+# ~9 PM PT, polling every 3 min: each ~27-minute run starts the next one (GitHub's cron runs hours late, so the crons
+# below only restart the chain) and triggers a site rebuild, which also posts new picks/results to Discord. QB / injury news dispatches a fresh odds pull in the private pipeline repo (via PRIVATE_REPO_TOKEN).
 on:
   schedule:
     - cron: "*/30 12-23,0-4 * * *"
@@ -20,6 +21,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   watch:
@@ -61,4 +63,16 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -qm "news $(date -u +%Y-%m-%dT%H:%MZ)"
             for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+          fi
+      - name: Continue the chain and rebuild the site
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/actions/workflows/site.yml/dispatches" -f ref=main || true
+          H=$(TZ=America/Los_Angeles date +%-H)
+          if [ "$H" -ge 5 ] && [ "$H" -lt 21 ]; then
+            gh api -X POST "repos/${{ github.repository }}/actions/workflows/news.yml/dispatches" -f ref=main
+          else
+            echo "outside 5 AM-9 PM PT: chain stops until the morning cron"
           fi
