@@ -1,4 +1,4 @@
-# NBA Test: paper tracking (updated Thu Oct 22 12:43 AM PT)
+# NBA Test: paper tracking (updated Thu Oct 22 5:35 AM PT)
 
 Edges vs Pinnacle no-vig ~30-60 min before tip; CLV = closing no-vig minus our implied probability (points).
 Go-live test: paper bets average CLV > 0 over 100+ graded bets.
@@ -21,7 +21,7 @@ Independent checks on Tier A/B props (CLV above mostly restates the starting edg
 prop prices rarely move before tip):
 - Pinnacle fair move, bet to close: -0.38 (n=44, 32% > 0) pts (+ = moved our way)
 - Beat the venue's own closing price: +0.44 (n=56, 43% > 0) pts
-- CLV vs Kalshi ladder at tip (independent): n/a pts
+- CLV vs Kalshi ladder at tip (independent): -0.13 (n=45, 42% > 0) pts
 - Over share of A/B props: 80%
 
 Nights tracked: 2; edges per night: 2026-10-20 13, 2026-10-21 94
