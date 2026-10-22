@@ -43,5 +43,8 @@
   "W6-16",
   "W6-17"
  ],
- "paper_init": true
+ "paper_init": true,
+ "nba_posted": [],
+ "nba_results": [],
+ "nba_init": true
 }
