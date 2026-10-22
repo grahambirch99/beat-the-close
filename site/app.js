@@ -278,7 +278,7 @@
     $("#bonus-stats").innerHTML = items.map(([v, k]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join("");
     $("#bonus-sub").textContent = list.length ? `${list.length} parlay${list.length === 1 ? "" : "s"} so far` : "Starts with the next game day.";
     $("#bonus-cards").innerHTML = list.length ? list.map(bonusCard).join("")
-      : '<div class="empty"><b>No bonus parlay yet.</b>It posts with the first fresh odds pull of a game day: Sunday mornings for the NFL, about an hour before tip-off for the NBA.</div>';
+      : '<div class="empty"><b>No bonus parlay yet.</b>It posts late morning: about 11:15 AM PT Saturday for Sunday NFL games, about 11:30 AM PT on NBA game days.</div>';
   }
 
   /* ---------------- alerts ---------------- */
