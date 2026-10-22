@@ -1,0 +1,56 @@
+name: research-public
+
+# Free-minutes research runner: executes a script from the private pipeline repo (checked out at p/) and hands its
+# output directory (must be under data/research/) back to the private repo via lean_save.yml. Nothing is committed here.
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "Script path inside the private repo (research/...)"
+        required: true
+      out:
+        description: "Output dir inside the private repo (data/research/...)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: grahambirch99/nfl-odds-logger
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: p
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -q pandas pyarrow numpy pyreadr
+      - name: Run
+        env:
+          SCRIPT: ${{ inputs.script }}
+          OUT: ${{ inputs.out }}
+        run: |
+          set -o pipefail
+          case "$SCRIPT" in research/*.py) ;; *) echo "script must be research/*.py"; exit 1;; esac
+          case "$OUT" in data/research/*) ;; *) echo "out must be under data/research/"; exit 1;; esac
+          python "p/$SCRIPT" --out "p/$OUT" 2>&1 | tee /tmp/run.log
+      - name: Hand output to the private repo
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          OUT: ${{ inputs.out }}
+        run: |
+          P=$(tar czf - -C p "$OUT" | base64 -w0)
+          echo "payload ${#P} chars" | tee -a /tmp/run.log
+          gh api -X POST repos/grahambirch99/nfl-odds-logger/actions/workflows/lean_save.yml/dispatches \
+            -f ref=main -f "inputs[payload]=$P" 2>&1 | tee -a /tmp/run.log
+      - name: Log summary (run annotation)
+        if: always()
+        run: |
+          [ -f /tmp/run.log ] || exit 0
+          msg=$(tail -n 40 /tmp/run.log | cut -c1-250 | sed -e 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')
+          echo "::notice title=research log::$msg"
