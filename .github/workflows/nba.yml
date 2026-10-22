@@ -56,8 +56,11 @@ jobs:
           ODDS_DB: nba-cache/nba.db
           NBA_OUT: data/nba
         run: |
+          mkdir -p nba-cache
+          timeout 1500 python p/nba_h2h.py update-logs || true       # ESPN box-score history for the matchup test
           [ -f nba-cache/nba.db ] || { echo "no NBA data yet"; exit 0; }
           python p/nba_paper.py > /dev/null || true
+          python p/nba_h2h.py flag || true
           git config user.name  "closing-line-club"
           git config user.email "closing-line-club@users.noreply.github.com"
           git add data/nba
@@ -93,6 +96,7 @@ jobs:
           # Commit paper bets every 10 minutes, so each one is timestamped before tip-off; then rebuild the site.
           ( while sleep 600; do
               [ -f nba-cache/nba.db ] && python p/nba_paper.py > /dev/null 2>&1 || true
+              [ -f nba-cache/nba.db ] && python p/nba_h2h.py flag > /dev/null 2>&1 || true
               git add data/nba 2>/dev/null || true
               if ! git diff --cached --quiet; then
                 git commit -qm "nba paper bets $(date -u +%Y-%m-%dT%H:%MZ)"
@@ -107,6 +111,7 @@ jobs:
           ODDS_DB: nba-cache/nba.db
           NBA_OUT: data/nba
         run: |
+          [ -f nba-cache/nba.db ] && python p/nba_h2h.py flag || true
           [ -f nba-cache/nba.db ] && python p/nba_paper.py || echo "no NBA data tonight"
           git config user.name  "closing-line-club"
           git config user.email "closing-line-club@users.noreply.github.com"
