@@ -8,5 +8,60 @@
   "units_boost": 0,
   "exp_hits": 0
  },
- "parlays": []
+ "parlays": [
+  {
+   "id": "BP-2026-10-22",
+   "date": "2026-10-22",
+   "sport": "NBA",
+   "posted": "2026-10-22T19:21:29Z",
+   "app": "PrizePicks",
+   "size": 3,
+   "payout": 5.0,
+   "odds": 400,
+   "p_hit": 0.1697,
+   "ev": -0.1515,
+   "boost_needed": 22.3,
+   "boost": null,
+   "payout_boost": null,
+   "ev_boost": null,
+   "status": "pending",
+   "units": null,
+   "units_boost": null,
+   "legs": [
+    {
+     "player": "Donovan Mitchell",
+     "bet": "Lower 5 assists",
+     "game": "Cavaliers at 76ers",
+     "kick": "2026-10-22T23:10:00Z",
+     "fair": 0.5767,
+     "push": 0,
+     "ref": "Kalshi",
+     "result": null,
+     "actual": null
+    },
+    {
+     "player": "Nikola Jokic",
+     "bet": "Lower 10 assists",
+     "game": "Nuggets at Thunder",
+     "kick": "2026-10-23T01:40:00Z",
+     "fair": 0.5433,
+     "push": 0,
+     "ref": "Kalshi",
+     "result": null,
+     "actual": null
+    },
+    {
+     "player": "Jamal Murray",
+     "bet": "Lower 4 rebounds",
+     "game": "Nuggets at Thunder",
+     "kick": "2026-10-23T01:40:00Z",
+     "fair": 0.5416,
+     "push": 0,
+     "ref": "Kalshi",
+     "result": null,
+     "actual": null
+    }
+   ]
+  }
+ ]
 }

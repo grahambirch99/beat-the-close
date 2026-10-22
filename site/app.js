@@ -251,7 +251,7 @@
     const legs = b.legs.map((l) => {
       const r = l.result === "W" ? "W" : l.result === "L" ? "L" : l.result === "void" ? "void" : "open";
       return `<li class="leg ${r}"><span class="leg-icon">${ICON[r] || ""}</span><span><b>${esc(l.player)}</b> ${esc(l.bet)}
-        <small>${esc(l.game)} · fair ${pct(l.fair)}${l.actual ? ` · ${esc(l.actual)}` : ""}</small></span></li>`;
+        <small>${esc(l.game)} · wins ${pct(l.fair)}${l.push ? `, pushes ${pct(l.push)}` : ""}${l.actual ? ` · ${esc(l.actual)}` : ""}</small></span></li>`;
     }).join("");
     const ev = `${b.ev >= 0 ? "+" : ""}${(b.ev * 100).toFixed(0)}% EV`;
     const boostLine = b.boost != null
