@@ -30,15 +30,29 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q pandas pyarrow numpy pyreadr
+      - name: Restore research cache (priced data reused across runs; never committed)
+        uses: actions/cache/restore@v4
+        with:
+          path: research-cache
+          key: research-${{ github.run_id }}
+          restore-keys: research-
       - name: Run
         env:
           SCRIPT: ${{ inputs.script }}
           OUT: ${{ inputs.out }}
+          RESEARCH_CACHE: ${{ github.workspace }}/research-cache
         run: |
           set -o pipefail
+          mkdir -p research-cache
           case "$SCRIPT" in research/*.py) ;; *) echo "script must be research/*.py"; exit 1;; esac
           case "$OUT" in data/research/*) ;; *) echo "out must be under data/research/"; exit 1;; esac
           python "p/$SCRIPT" --out "p/$OUT" 2>&1 | tee /tmp/run.log
+      - name: Save research cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: research-cache
+          key: research-${{ github.run_id }}
       - name: Hand output to the private repo
         env:
           GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
