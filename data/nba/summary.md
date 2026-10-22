@@ -1,4 +1,4 @@
-# NBA Test: paper tracking (updated Wed Oct 21 6:46 PM PT)
+# NBA Test: paper tracking (updated Wed Oct 21 6:56 PM PT)
 
 Edges vs Pinnacle no-vig ~30-60 min before tip; CLV = closing no-vig minus our implied probability (points).
 Go-live test: paper bets average CLV > 0 over 100+ graded bets.
@@ -7,15 +7,15 @@ Paper bets: 56; graded 1-5-0, -1.85u (-52.9% ROI)
 
 | Group | Edges | Avg est. edge | With close | Avg CLV (pts) | Beat close |
 |---|---|---|---|---|---|
-| Paper bets | 56 | +4.8% | 30 | +1.58 | 90% |
-| All Tier A/B | 57 | +4.7% | 31 | +1.57 | 90% |
-| Tier A | 33 | +5.6% | 16 | +1.71 | 88% |
-| Tier B | 24 | +3.5% | 15 | +1.42 | 93% |
-| Tier C (2-3%) | 50 | +2.5% | 31 | +1.06 | 90% |
-| A/B h2h | 1 | +6.6% | 0 | +nan | 0% |
-| A/B assists | 18 | +4.9% | 8 | +1.90 | 100% |
-| A/B points | 19 | +4.5% | 11 | +1.24 | 82% |
-| A/B rebounds | 19 | +4.6% | 12 | +1.65 | 92% |
+| Paper bets | 56 | +4.8% | 38 | +1.68 | 92% |
+| All Tier A/B | 57 | +4.7% | 39 | +1.67 | 92% |
+| Tier A | 33 | +5.6% | 22 | +1.83 | 91% |
+| Tier B | 24 | +3.5% | 17 | +1.46 | 94% |
+| Tier C (2-3%) | 50 | +2.5% | 37 | +1.12 | 92% |
+| A/B h2h | 1 | +6.6% | 1 | +0.37 | 100% |
+| A/B assists | 18 | +4.9% | 11 | +2.01 | 100% |
+| A/B points | 19 | +4.5% | 13 | +1.43 | 85% |
+| A/B rebounds | 19 | +4.6% | 14 | +1.72 | 93% |
 
 Nights tracked: 2; edges per night: 2026-10-20 13, 2026-10-21 94
-Odds API credits: 8456 left (shared with NFL); NBA spend by night: 2026-10-20 12, 2026-10-21 102
+Odds API credits: 8450 left (shared with NFL); NBA spend by night: 2026-10-20 12, 2026-10-21 108
