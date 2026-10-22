@@ -1,28 +1,22 @@
-# NBA Test: paper tracking (updated Thu Oct 22 5:35 AM PT)
+# NBA Test: paper tracking (updated Thu Oct 22 10:09 AM PT)
 
-Edges vs Pinnacle no-vig ~30-60 min before tip; CLV = closing no-vig minus our implied probability (points).
-Go-live test: paper bets average CLV > 0 over 100+ graded bets.
+Rules v2 (research/nba_rules_v2_PREREG.md): fair = Pinnacle + Kalshi ladder; Unders >= 3% edge, Overs >= 6% and no
+longer than +233; Novig/ProphetX only. Scorecard: CLV vs the Kalshi ladder at tip ('Kalshi CLV').
+Gate (100+ graded): Kalshi CLV >= +1.0 pt with lower 95% bound > 0, >= 55% beat it, wins not significantly below expected.
 
-Paper bets: 56; graded 17-39-0, -10.66u (-31.4% ROI)
+v2 paper bets: 0 bets; graded 0-0-0, +0.00u
+v1 (retired Oct 22, Pinnacle-only fair): 56 bets; graded 17-39-0, -10.66u (-31.4% ROI)
+Matchup test (research/nba_h2h_forward_PREREG.md, Kalshi taker): 0 bets; graded 0-0-0, +0.00u
 
-| Group | Edges | Avg est. edge | With close | Avg CLV (pts) | Beat close |
+| Group | Edges | Avg est. edge | With close | Avg CLV vs Pinnacle (pts) | Beat close |
 |---|---|---|---|---|---|
-| Paper bets | 56 | +4.8% | 44 | +1.71 | 93% |
-| All Tier A/B | 57 | +4.7% | 45 | +1.70 | 93% |
-| Tier A | 33 | +5.6% | 26 | +1.88 | 92% |
-| Tier B | 24 | +3.5% | 19 | +1.46 | 95% |
-| Tier C (2-3%) | 50 | +2.5% | 41 | +1.01 | 90% |
-| A/B h2h | 1 | +6.6% | 1 | +0.37 | 100% |
-| A/B assists | 18 | +4.9% | 11 | +2.01 | 100% |
-| A/B points | 19 | +4.5% | 17 | +1.59 | 88% |
-| A/B rebounds | 19 | +4.6% | 16 | +1.69 | 94% |
 
-Independent checks on Tier A/B props (CLV above mostly restates the starting edge, because Pinnacle's NBA
+Independent checks on v2 paper bets (CLV vs Pinnacle mostly restates the starting edge, because Pinnacle's NBA
 prop prices rarely move before tip):
-- Pinnacle fair move, bet to close: -0.38 (n=44, 32% > 0) pts (+ = moved our way)
-- Beat the venue's own closing price: +0.44 (n=56, 43% > 0) pts
-- CLV vs Kalshi ladder at tip (independent): -0.13 (n=45, 42% > 0) pts
-- Over share of A/B props: 80%
+- Pinnacle fair move, bet to close: n/a pts (+ = moved our way)
+- Beat the venue's own closing price: n/a pts
+- CLV vs Kalshi ladder at tip (independent): n/a pts
+- Over share of paper bets: 0%
 
-Nights tracked: 2; edges per night: 2026-10-20 13, 2026-10-21 94
+Nights tracked: 0; edges per night: 
 Odds API credits: 8444 left (shared with NFL); NBA spend by night: 2026-10-20 12, 2026-10-21 114
