@@ -39,8 +39,8 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: lean-cache
-          key: lean-v1-${{ github.run_id }}
-          restore-keys: lean-v1-
+          key: lean-v2-${{ github.run_id }}
+          restore-keys: lean-v2-
       - name: Live-ladder smoke test (throwaway db)
         continue-on-error: true
         run: ODDS_DB=/tmp/kalshi_smoke.db timeout 300 python p/lean_monitor.py smoke 2>&1 | tee -a /tmp/lean.log
@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: lean-cache
-          key: lean-v1-${{ github.run_id }}
+          key: lean-v2-${{ github.run_id }}
       - name: Report
         run: |
           set -o pipefail
