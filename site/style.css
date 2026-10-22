@@ -190,3 +190,13 @@ main { max-width: 1080px; margin: 0 auto; padding: 22px 16px 40px; }
 .t-meta + .t-bet { margin-top: 10px; }
 .discord-btn { display: inline-flex; align-items: center; gap: 8px; background: #5865F2; color: #fff; font-weight: 700; text-decoration: none; padding: 11px 20px; border-radius: var(--r-sm); margin-top: 4px; }
 .discord-btn:hover { background: #4752C4; }
+
+/* bonus parlay legs */
+.legs { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.leg { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); }
+.leg small { display: block; color: var(--ink-3); font-size: .82rem; }
+.leg-icon { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--open); }
+.leg-icon svg { width: 18px; height: 18px; }
+.leg.W .leg-icon { color: var(--win); }
+.leg.L .leg-icon { color: var(--loss); }
+.leg.void .leg-icon { color: var(--push); }

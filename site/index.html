@@ -25,6 +25,7 @@
         <a href="#board" data-tab="board">Board</a>
         <a href="#record" data-tab="record">Record</a>
         <a href="#nba" data-tab="nba">NBA Test</a>
+        <a href="#bonus" data-tab="bonus">Bonus parlay</a>
         <a href="#wire" data-tab="wire">News wire</a>
         <a href="#method" data-tab="method">How it works</a>
       </nav>
@@ -79,6 +80,25 @@
         <h2 class="h2">By bet type</h2>
         <table class="table" id="type-table"></table>
       </div>
+    </section>
+
+    <!-- BONUS PARLAY -->
+    <section class="view" id="view-bonus" aria-labelledby="bonus-title" hidden>
+      <div class="board-head">
+        <div>
+          <h1 id="bonus-title" class="week-title">Bonus parlay</h1>
+          <p class="week-sub" id="bonus-sub"></p>
+        </div>
+        <span class="tag test-tag">For fun · not in the record</span>
+      </div>
+      <p class="lede">One pick'em entry a day when there are games: Sundays from the NFL, other days from the NBA. Each leg
+        must be at least a 54% favorite at the app's line by the average of Pinnacle's and Kalshi's prices, every leg comes
+        from a different game, and the entry pays between +100 and +400. At the normal payout that's usually still a
+        slightly losing bet, so each card shows the boost it needs; it's meant for days the app runs a promo. Results are
+        shown at the normal payout and, when a boost was running, at the boosted payout. None of it counts toward our
+        record.</p>
+      <div class="stats" id="bonus-stats"></div>
+      <div id="bonus-cards" class="tickets" aria-live="polite"></div>
     </section>
 
     <!-- WIRE -->
