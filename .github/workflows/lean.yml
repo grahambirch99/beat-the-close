@@ -1,8 +1,8 @@
 name: lean-monitor
 
 # Weekly Over/Under lean monitor on Kalshi NFL player-prop main lines (free public data, free public-repo minutes).
-# Runs the code from the private pipeline repo (checked out at p/) and pushes only the aggregate report back there
-# (p/data/lean/). Per-market Kalshi prices stay in this workflow's cache; nothing is committed to this public repo.
+# Runs the code from the private pipeline repo (checked out at p/) and hands only the aggregate report back there
+# (lean_save.yml in the private repo commits it to data/lean/). Per-market Kalshi prices stay in this workflow's cache; nothing is committed to this public repo.
 on:
   schedule:
     - cron: "17 14 * * 2"   # Tue ~7:17 AM PT (after Monday night's game settles)
@@ -59,16 +59,15 @@ jobs:
         run: |
           set -o pipefail
           LEAN_OUT=p/data/lean python p/lean_monitor.py report --cache lean-cache/markets.csv.gz 2>&1 | tee -a /tmp/lean.log
-      - name: Push report to the private repo
+      - name: Hand the report to the private repo (lean_save.yml commits it there)
+        env:
+          GH_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
         run: |
-          cd p
-          git config user.name  "lean-monitor"
-          git config user.email "lean-monitor@users.noreply.github.com"
-          git add data/lean
-          if git diff --cached --quiet; then echo "No change."; else
-            git commit -qm "lean monitor $(date -u +%Y-%m-%dT%H:%MZ)"
-            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
-          fi
+          set -o pipefail
+          P=$(tar czf - -C p data/lean | base64 -w0)
+          echo "payload ${#P} chars" | tee -a /tmp/lean.log
+          gh api -X POST repos/grahambirch99/nfl-odds-logger/actions/workflows/lean_save.yml/dispatches \
+            -f ref=main -f "inputs[payload]=$P" 2>&1 | tee -a /tmp/lean.log
       - name: Log summary (readable as a run annotation)
         if: always()
         run: |
