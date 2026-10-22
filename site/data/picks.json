@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-20T17:46:37Z",
+ "generated_at": "2026-10-22T23:16:14Z",
  "current_week": 7,
  "weeks": [
   {
@@ -16,6 +16,56 @@
     "n_clv": 0
    },
    "picks": [
+    {
+     "id": "2026-W07-0019",
+     "week": 7,
+     "kind": "bet",
+     "tier": "A",
+     "market": "player_receptions",
+     "title": "A.J. Brown",
+     "bet": "Under 4.5 receptions",
+     "game": "Patriots at Bears",
+     "kick": "2026-10-23T00:15:00Z",
+     "kick_label": "Thu 5:15 PM PT",
+     "venue": "Novig",
+     "price": "+156",
+     "stake": 5.0,
+     "implied": 39.1,
+     "fair": 41.3,
+     "edge": 5.7,
+     "worst": "+149",
+     "analysis": "Novig at +156 beats Pinnacle's no-vig price (41% to hit), a +5.7% edge after inactives were announced.",
+     "status": "pending",
+     "actual": "",
+     "clv": null,
+     "units": null,
+     "posted": "2026-10-22T22:55:27Z"
+    },
+    {
+     "id": "2026-W07-0020",
+     "week": 7,
+     "kind": "bet",
+     "tier": "A",
+     "market": "player_receptions",
+     "title": "D'Andre Swift",
+     "bet": "Under 2.5 receptions",
+     "game": "Patriots at Bears",
+     "kick": "2026-10-23T00:15:00Z",
+     "kick_label": "Thu 5:15 PM PT",
+     "venue": "Novig",
+     "price": "+133",
+     "stake": 7.5,
+     "implied": 42.9,
+     "fair": 45.0,
+     "edge": 4.9,
+     "worst": "+129",
+     "analysis": "Novig at +133 beats Pinnacle's no-vig price (45% to hit), a +4.9% edge after inactives were announced.",
+     "status": "pending",
+     "actual": "",
+     "clv": null,
+     "units": null,
+     "posted": "2026-10-22T22:55:27Z"
+    },
     {
      "id": "2026-W07-0018",
      "week": 7,
