@@ -30,5 +30,18 @@
   "W6-09",
   "W6-15"
  ],
- "init": true
+ "init": true,
+ "paper_posted": [
+  "W6-10",
+  "W6-26",
+  "W6-16",
+  "W6-17"
+ ],
+ "paper_results": [
+  "W6-10",
+  "W6-26",
+  "W6-16",
+  "W6-17"
+ ],
+ "paper_init": true
 }
