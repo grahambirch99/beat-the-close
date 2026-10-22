@@ -50,7 +50,7 @@
 
   function ticket(p) {
     const st = p.status === "pending" ? "open" : p.status;
-    const tierTag = p.kind === "nba" ? `<span class="tag T">Paper</span>${p.retired ? '<span class="tag">Retired v1 rules</span>' : p.tier === "A" ? '<span class="tag A">Strong</span>' : ""}`
+    const tierTag = p.kind === "nba" ? `<span class="tag T">Paper</span>${p.retired ? '<span class="tag">Retired v1 rules</span>' : p.rules === "h2h" ? '<span class="tag">Matchup test</span>' : p.tier === "A" ? '<span class="tag A">Strong</span>' : ""}`
       : p.kind === "paper" ? '<span class="tag">Paper</span>'
       : p.kind === "teaser" ? '<span class="tag T">Teaser</span>'
       : p.tier === "A" ? '<span class="tag A">Strong</span>' : p.tier === "B" ? '<span class="tag">Value</span>' : "";
@@ -168,6 +168,7 @@
     const s = D.summary.season || { w: 0, l: 0, p: 0 };
     const items = [[rec(s), "Record (bets and teasers)"], [fmtU(s.units), "Profit in units"], [s.roi == null ? "–" : `${s.roi > 0 ? "+" : ""}${s.roi}%`, "Return on stakes"],
       [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average CLV vs Kalshi's close"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat Kalshi's close"],
+      [s.h2h && s.h2h.w + s.h2h.l ? `${rec(s.h2h)}, ${fmtU(s.h2h.units)}` : s.h2h && s.h2h.bets ? `${s.h2h.bets} open` : "–", "Matchup test (separate)"],
       [s.v1 && s.v1.w + s.v1.l ? `${rec(s.v1)}, ${fmtU(s.v1.units)}` : "–", "Retired v1 rules (Oct 20–21)"]];
     $("#stats").innerHTML = items.map(([v, k]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join("");
     unitsChart(); clvChart();
@@ -195,6 +196,7 @@
     const items = [[s.w + s.l + (s.p || 0) ? rec(s) : "–", "Paper record"], [s.w + s.l ? fmtU(s.units) : "–", "Paper profit in units"],
       [s.roi == null ? "–" : `${s.roi > 0 ? "+" : ""}${s.roi}%`, "Return on stakes"],
       [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average CLV vs Kalshi's close"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat Kalshi's close"],
+      [s.h2h && s.h2h.w + s.h2h.l ? `${rec(s.h2h)}, ${fmtU(s.h2h.units)}` : s.h2h && s.h2h.bets ? `${s.h2h.bets} open` : "–", "Matchup test (separate)"],
       [s.v1 && s.v1.w + s.v1.l ? `${rec(s.v1)}, ${fmtU(s.v1.units)}` : "–", "Retired v1 rules (Oct 20–21)"]];
     $("#nba-stats").innerHTML = items.map(([val, k]) => `<div class="stat"><div class="v">${val}</div><div class="k">${k}</div></div>`).join("");
     const cur = nights.find((x) => x.night === night) || nights[0];

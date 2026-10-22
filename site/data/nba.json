@@ -22,6 +22,17 @@
    "beat": 41,
    "n_clv": 44,
    "bets": 56
+  },
+  "h2h": {
+   "w": 0,
+   "l": 0,
+   "p": 0,
+   "units": 0,
+   "roi": null,
+   "clv": null,
+   "beat": null,
+   "n_clv": 0,
+   "bets": 0
   }
  },
  "by_type": [],
