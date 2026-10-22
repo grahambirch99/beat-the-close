@@ -43,11 +43,12 @@ jobs:
           restore-keys: lean-v1-
       - name: Live-ladder smoke test (throwaway db)
         continue-on-error: true
-        run: ODDS_DB=/tmp/kalshi_smoke.db timeout 300 python p/lean_monitor.py smoke
+        run: ODDS_DB=/tmp/kalshi_smoke.db timeout 300 python p/lean_monitor.py smoke 2>&1 | tee -a /tmp/lean.log
       - name: Add newly settled games
         run: |
           MAX="${{ inputs.max_markets }}"
-          python p/lean_monitor.py update --cache lean-cache/markets.csv.gz ${MAX:+--max $MAX}
+          set -o pipefail
+          python p/lean_monitor.py update --cache lean-cache/markets.csv.gz ${MAX:+--max $MAX} 2>&1 | tee -a /tmp/lean.log
       - name: Save market cache
         if: always()
         uses: actions/cache/save@v4
@@ -55,7 +56,9 @@ jobs:
           path: lean-cache
           key: lean-v1-${{ github.run_id }}
       - name: Report
-        run: LEAN_OUT=p/data/lean python p/lean_monitor.py report --cache lean-cache/markets.csv.gz
+        run: |
+          set -o pipefail
+          LEAN_OUT=p/data/lean python p/lean_monitor.py report --cache lean-cache/markets.csv.gz 2>&1 | tee -a /tmp/lean.log
       - name: Push report to the private repo
         run: |
           cd p
@@ -66,3 +69,9 @@ jobs:
             git commit -qm "lean monitor $(date -u +%Y-%m-%dT%H:%MZ)"
             for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
           fi
+      - name: Log summary (readable as a run annotation)
+        if: always()
+        run: |
+          [ -f /tmp/lean.log ] || exit 0
+          msg=$(tail -n 25 /tmp/lean.log | cut -c1-300 | sed -e 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')
+          echo "::notice title=lean-monitor log::$msg"
