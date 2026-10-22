@@ -1,9 +1,9 @@
-# NBA Test: paper tracking (updated Wed Oct 21 7:06 PM PT)
+# NBA Test: paper tracking (updated Wed Oct 21 7:16 PM PT)
 
 Edges vs Pinnacle no-vig ~30-60 min before tip; CLV = closing no-vig minus our implied probability (points).
 Go-live test: paper bets average CLV > 0 over 100+ graded bets.
 
-Paper bets: 56; graded 1-5-0, -1.85u (-52.9% ROI)
+Paper bets: 56; graded 2-8-0, -3.13u (-50.1% ROI)
 
 | Group | Edges | Avg est. edge | With close | Avg CLV (pts) | Beat close |
 |---|---|---|---|---|---|
