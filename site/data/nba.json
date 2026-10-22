@@ -5,12 +5,12 @@
   "p": 0,
   "units": -3.13,
   "roi": -50.1,
-  "clv": 1.68,
-  "beat": 92,
-  "n_clv": 38,
+  "clv": 1.71,
+  "beat": 93,
+  "n_clv": 44,
   "bets": 56,
   "goal": 100,
-  "graded_clv": 38
+  "graded_clv": 44
  },
  "by_type": [
   {
@@ -1194,7 +1194,7 @@
      "analysis": "Novig's price was 7.5% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 3.49,
      "units": null,
      "posted": "2026-10-22T01:40:36Z"
     },
@@ -1219,7 +1219,7 @@
      "analysis": "Novig's price was 5.9% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.51,
      "units": null,
      "posted": "2026-10-22T01:40:36Z"
     },
@@ -1244,7 +1244,7 @@
      "analysis": "Novig's price was 4.3% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 2.0,
      "units": null,
      "posted": "2026-10-22T01:40:36Z"
     },
@@ -1269,7 +1269,7 @@
      "analysis": "Novig's price was 4.2% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.64,
      "units": null,
      "posted": "2026-10-22T01:40:36Z"
     },
@@ -1294,7 +1294,7 @@
      "analysis": "Novig's price was 3.2% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.33,
      "units": null,
      "posted": "2026-10-22T01:40:36Z"
     },
@@ -1319,7 +1319,7 @@
      "analysis": "Novig's price was 3.0% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.58,
      "units": null,
      "posted": "2026-10-22T01:40:36Z"
     }
