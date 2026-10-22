@@ -19,6 +19,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   lean:
@@ -45,8 +46,9 @@ jobs:
         continue-on-error: true
         run: ODDS_DB=/tmp/kalshi_smoke.db timeout 300 python p/lean_monitor.py smoke 2>&1 | tee -a /tmp/lean.log
       - name: Add newly settled games
+        id: upd
         run: |
-          MAX="${{ inputs.max_markets }}"
+          MAX="${{ inputs.max_markets || '9000' }}"
           set -o pipefail
           python p/lean_monitor.py update --cache lean-cache/markets.csv.gz ${MAX:+--max $MAX} 2>&1 | tee -a /tmp/lean.log
       - name: Save market cache
@@ -74,3 +76,8 @@ jobs:
           [ -f /tmp/lean.log ] || exit 0
           msg=$(tail -n 25 /tmp/lean.log | cut -c1-300 | sed -e 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')
           echo "::notice title=lean-monitor log::$msg"
+      - name: Continue the backfill if markets are left
+        if: steps.upd.outputs.remaining != '' && steps.upd.outputs.remaining != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/actions/workflows/lean.yml/dispatches" -f ref=main
