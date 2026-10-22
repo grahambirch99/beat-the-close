@@ -67,6 +67,9 @@ jobs:
           SITE_DIR: site
           EMAIL_STATE: data/site/emailed.json
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_NBA: ${{ secrets.DISCORD_WEBHOOK_NBA }}
+          PROPS_PAPER: p/data/props_paper/paper.csv
+          ANGLES_PAPER: p/data/picks/angles_paper.csv
         run: |
           DISCORD_STATE=data/site/discord.json python p/discord_alerts.py
           git add data/site
