@@ -50,7 +50,7 @@
 
   function ticket(p) {
     const st = p.status === "pending" ? "open" : p.status;
-    const tierTag = p.kind === "nba" ? `<span class="tag T">Paper</span>${p.tier === "A" ? '<span class="tag A">Strong</span>' : ""}`
+    const tierTag = p.kind === "nba" ? `<span class="tag T">Paper</span>${p.retired ? '<span class="tag">Retired v1 rules</span>' : p.tier === "A" ? '<span class="tag A">Strong</span>' : ""}`
       : p.kind === "paper" ? '<span class="tag">Paper</span>'
       : p.kind === "teaser" ? '<span class="tag T">Teaser</span>'
       : p.tier === "A" ? '<span class="tag A">Strong</span>' : p.tier === "B" ? '<span class="tag">Value</span>' : "";
@@ -167,7 +167,8 @@
   function renderRecord() {
     const s = D.summary.season || { w: 0, l: 0, p: 0 };
     const items = [[rec(s), "Record (bets and teasers)"], [fmtU(s.units), "Profit in units"], [s.roi == null ? "–" : `${s.roi > 0 ? "+" : ""}${s.roi}%`, "Return on stakes"],
-      [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average closing-line value"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat the close"]];
+      [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average CLV vs Kalshi's close"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat Kalshi's close"],
+      [s.v1 && s.v1.w + s.v1.l ? `${rec(s.v1)}, ${fmtU(s.v1.units)}` : "–", "Retired v1 rules (Oct 20–21)"]];
     $("#stats").innerHTML = items.map(([v, k]) => `<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join("");
     unitsChart(); clvChart();
     const t = D.summary.by_type || [];
@@ -189,11 +190,12 @@
     const v = $("#nba-goal-verdict");
     v.className = "verdict";
     if (!n) v.textContent = "First bets grade at tip-off";
-    else if (n >= goal) { v.textContent = s.clv > 0 ? "Passed: ready to go live" : "Not passing: stays on paper"; v.classList.add(s.clv > 0 ? "beat" : "lag"); }
+    else if (n >= goal) { v.textContent = s.passed ? "Passed the test" : "Not passing: stays on paper"; v.classList.add(s.passed ? "beat" : "lag"); }
     else { v.textContent = `Average so far ${fmtPts(s.clv)} pts`; v.classList.add(s.clv > 0 ? "beat" : "lag"); }
     const items = [[s.w + s.l + (s.p || 0) ? rec(s) : "–", "Paper record"], [s.w + s.l ? fmtU(s.units) : "–", "Paper profit in units"],
       [s.roi == null ? "–" : `${s.roi > 0 ? "+" : ""}${s.roi}%`, "Return on stakes"],
-      [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average closing-line value"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat the close"]];
+      [s.clv == null ? "–" : `${fmtPts(s.clv)} pts`, "Average CLV vs Kalshi's close"], [s.beat == null ? "–" : `${s.beat}%`, "Bets that beat Kalshi's close"],
+      [s.v1 && s.v1.w + s.v1.l ? `${rec(s.v1)}, ${fmtU(s.v1.units)}` : "–", "Retired v1 rules (Oct 20–21)"]];
     $("#nba-stats").innerHTML = items.map(([val, k]) => `<div class="stat"><div class="v">${val}</div><div class="k">${k}</div></div>`).join("");
     const cur = nights.find((x) => x.night === night) || nights[0];
     night = cur ? cur.night : null;
@@ -205,7 +207,7 @@
     const t = N.by_type || [];
     $("#nba-type-table").innerHTML = `<thead><tr><th scope="col">Market</th><th scope="col">Record</th><th scope="col">Units</th><th scope="col">Avg CLV</th></tr></thead><tbody>` +
       (t.length ? t.map((r) => `<tr><td>${esc(r.type)}</td><td>${rec(r)}</td><td>${fmtU(r.units)}</td><td>${r.clv == null ? "–" : fmtPts(r.clv)}</td></tr>`).join("")
-        : '<tr><td colspan="4">No graded paper bets yet.</td></tr>') + "</tbody>";
+        : '<tr><td colspan="4">No graded paper bets under the current rules yet.</td></tr>') + "</tbody>";
   }
 
   /* ---------------- wire ---------------- */

@@ -91,11 +91,16 @@
         </div>
         <span class="tag test-tag">Paper only</span>
       </div>
-      <p class="lede">We're testing the model on the NBA before it goes live. Same method as our NFL picks: exchange prices
-        against Pinnacle's no-margin line, 30 to 60 minutes before tip-off. These bets are tracked and graded here, but they
-        aren't sent to Discord and don't count in the record. NBA goes live once 100 paper bets beat the closing line on average.</p>
+      <p class="lede">We're testing NBA player props on paper before anything goes live. A bet needs an exchange price
+        (Novig or ProphetX) that beats the average of Pinnacle's and Kalshi's prices: Unders by 3% or more, Overs by 6% or
+        more, and no Overs longer than +233. Each bet is graded against Kalshi's price at tip-off. Nothing here is sent to
+        Discord or counts in the record. To pass, 100 graded bets must beat Kalshi's closing price by at least 1 point on
+        average, with at least 55% of them beating it.</p>
+      <p class="lede">Our first NBA rules (Oct 20–21) compared exchange prices with Pinnacle alone. Pinnacle's NBA prop
+        prices turned out to barely move before tip-off, so those "edges" weren't real: the bets went 17-39. We retired
+        those rules on Oct 22. Their bets stay listed below, marked "Retired v1 rules".</p>
       <div class="panel goal">
-        <div class="goal-head"><span><b id="nba-goal-n">0 of 100</b> bets graded against the closing line</span><span id="nba-goal-verdict"></span></div>
+        <div class="goal-head"><span><b id="nba-goal-n">0 of 100</b> bets graded against Kalshi's closing price</span><span id="nba-goal-verdict"></span></div>
         <div class="goal-track" role="progressbar" aria-label="Paper bets graded" aria-valuemin="0" aria-valuemax="100" id="nba-goal-bar"><div class="goal-fill" id="nba-goal-fill"></div></div>
       </div>
       <div class="stats" id="nba-stats"></div>
@@ -133,7 +138,9 @@
         Pinnacle. Picks marked "paper" are tracked but not counted.</p>
       <h2 class="h2">NBA Test</h2>
       <p>NBA picks are on paper while we test them. Every bet the model would make is posted and graded on the NBA Test tab,
-        but none go to Discord or into the record until 100 of them beat the closing line on average.</p>
+        but none go to Discord or into the record. NBA bets are graded against Kalshi's price at tip-off, because Pinnacle's
+        NBA prop prices rarely move before the game. Our first NBA rules failed this check and were retired on Oct 22
+        (17-39); their bets are still shown.</p>
       <h2 class="h2">Units</h2>
       <p>Every stake and result is in units, so the record means the same thing whatever your bankroll. One unit is 2% of
         your bankroll. With a $500 bankroll, 1 unit is $10: a 0.5u pick is a $5 bet, a 0.75u Strong pick is $7.50, and a

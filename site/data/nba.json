@@ -1,63 +1,30 @@
 {
  "summary": {
-  "w": 17,
-  "l": 39,
+  "w": 0,
+  "l": 0,
   "p": 0,
-  "units": -10.66,
-  "roi": -31.4,
-  "clv": 1.71,
-  "beat": 93,
-  "n_clv": 44,
-  "bets": 56,
+  "units": 0,
+  "roi": null,
+  "clv": null,
+  "beat": null,
+  "n_clv": 0,
+  "bets": 0,
   "goal": 100,
-  "graded_clv": 44
- },
- "by_type": [
-  {
-   "type": "Assists",
-   "w": 6,
-   "l": 12,
+  "graded_clv": 0,
+  "passed": null,
+  "v1": {
+   "w": 17,
+   "l": 39,
    "p": 0,
-   "units": -2.6,
-   "roi": -24.2,
-   "clv": 2.01,
-   "beat": 100,
-   "n_clv": 11
-  },
-  {
-   "type": "Game lines",
-   "w": 0,
-   "l": 1,
-   "p": 0,
-   "units": -0.75,
-   "roi": -100.0,
-   "clv": 0.37,
-   "beat": 100,
-   "n_clv": 1
-  },
-  {
-   "type": "Points",
-   "w": 7,
-   "l": 12,
-   "p": 0,
-   "units": -2.98,
-   "roi": -25.3,
-   "clv": 1.59,
-   "beat": 88,
-   "n_clv": 17
-  },
-  {
-   "type": "Rebounds",
-   "w": 4,
-   "l": 14,
-   "p": 0,
-   "units": -4.34,
-   "roi": -40.4,
-   "clv": 1.71,
-   "beat": 93,
-   "n_clv": 15
+   "units": -10.66,
+   "roi": -31.4,
+   "clv": -0.14,
+   "beat": 41,
+   "n_clv": 44,
+   "bets": 56
   }
- ],
+ },
+ "by_type": [],
  "nights": [
   {
    "night": "2026-10-21",
@@ -68,9 +35,9 @@
     "p": 0,
     "units": -8.81,
     "roi": -28.9,
-    "clv": 1.69,
-    "beat": 92,
-    "n_clv": 39
+    "clv": -0.2,
+    "beat": 37,
+    "n_clv": 41
    },
    "picks": [
     {
@@ -94,9 +61,11 @@
      "analysis": "Novig's price was 10.2% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "L",
      "actual": "2 reb",
-     "clv": null,
+     "clv": -1.95,
      "units": -0.5,
-     "posted": "2026-10-21T22:10:14Z"
+     "posted": "2026-10-21T22:10:14Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-8d6db5f927",
@@ -119,9 +88,11 @@
      "analysis": "Novig's price was 5.8% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "L",
      "actual": "22 pts",
-     "clv": 1.53,
+     "clv": -0.05,
      "units": -0.75,
-     "posted": "2026-10-21T22:10:14Z"
+     "posted": "2026-10-21T22:10:14Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-5e4e65cb5c",
@@ -146,7 +117,9 @@
      "actual": "3 ast",
      "clv": null,
      "units": 0.721,
-     "posted": "2026-10-21T22:10:14Z"
+     "posted": "2026-10-21T22:10:14Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-788fdf5f43",
@@ -169,9 +142,11 @@
      "analysis": "Novig's price was 4.3% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "2 ast",
-     "clv": 1.8,
+     "clv": -0.99,
      "units": -0.75,
-     "posted": "2026-10-21T22:10:14Z"
+     "posted": "2026-10-21T22:10:14Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-e315180a77",
@@ -194,9 +169,11 @@
      "analysis": "Novig's price was 4.8% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "8 reb",
-     "clv": 1.92,
+     "clv": 0.5,
      "units": 0.75,
-     "posted": "2026-10-21T22:30:16Z"
+     "posted": "2026-10-21T22:30:16Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-21a66c71b7",
@@ -219,9 +196,11 @@
      "analysis": "Novig's price was 4.6% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "2 ast",
-     "clv": 2.33,
+     "clv": 1.52,
      "units": -0.75,
-     "posted": "2026-10-21T22:30:16Z"
+     "posted": "2026-10-21T22:30:16Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-ad0457d463",
@@ -244,9 +223,11 @@
      "analysis": "Novig's price was 4.3% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "7 reb",
-     "clv": -0.2,
+     "clv": 0.31,
      "units": 0.998,
-     "posted": "2026-10-21T22:30:16Z"
+     "posted": "2026-10-21T22:30:16Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-bb536b87d3",
@@ -271,7 +252,9 @@
      "actual": "0 ast",
      "clv": null,
      "units": -0.5,
-     "posted": "2026-10-21T22:30:16Z"
+     "posted": "2026-10-21T22:30:16Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-1e83662c7f",
@@ -294,9 +277,11 @@
      "analysis": "Novig's price was 8.7% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "11 ast",
-     "clv": 3.47,
+     "clv": 2.0,
      "units": -0.5,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-2e6e9645c7",
@@ -319,9 +304,11 @@
      "analysis": "Novig's price was 5.4% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "W",
      "actual": "23 pts",
-     "clv": -0.43,
+     "clv": -2.23,
      "units": 0.81,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-1b12219da8",
@@ -344,9 +331,11 @@
      "analysis": "Novig's price was 5.0% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "W",
      "actual": "10 reb",
-     "clv": 0.02,
+     "clv": -0.48,
      "units": 1.08,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-39bba0953d",
@@ -369,9 +358,11 @@
      "analysis": "Novig's price was 4.7% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "7 reb",
-     "clv": 1.85,
+     "clv": 1.97,
      "units": -0.5,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-4d873ea712",
@@ -394,9 +385,11 @@
      "analysis": "Novig's price was 4.2% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "6 reb",
-     "clv": 2.0,
+     "clv": -0.89,
      "units": 0.833,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-c2456c770b",
@@ -419,9 +412,11 @@
      "analysis": "Novig's price was 3.9% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "L",
      "actual": "1 reb",
-     "clv": null,
+     "clv": -0.51,
      "units": -0.5,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-d49d169a1e",
@@ -444,9 +439,11 @@
      "analysis": "Novig's price was 3.8% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "L",
      "actual": "1 ast",
-     "clv": null,
+     "clv": -0.55,
      "units": -0.5,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-bf02f2c3f4",
@@ -469,9 +466,11 @@
      "analysis": "Novig's price was 3.6% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "5 pts",
-     "clv": 2.2,
+     "clv": -0.52,
      "units": 0.52,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-290a421f9f",
@@ -494,9 +493,11 @@
      "analysis": "Novig's price was 3.2% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "5 reb",
-     "clv": 1.98,
+     "clv": -0.44,
      "units": -0.5,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-b483f0a499",
@@ -519,9 +520,11 @@
      "analysis": "Novig's price was 3.1% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "4 ast",
-     "clv": 0.87,
+     "clv": 0.44,
      "units": 0.78,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-0b80fb9644",
@@ -546,7 +549,9 @@
      "actual": "4 pts",
      "clv": null,
      "units": -0.5,
-     "posted": "2026-10-21T22:40:18Z"
+     "posted": "2026-10-21T22:40:18Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-923f79488d",
@@ -569,9 +574,11 @@
      "analysis": "Novig's price was 4.8% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "16 pts",
-     "clv": 2.14,
+     "clv": -1.55,
      "units": -0.75,
-     "posted": "2026-10-21T23:10:21Z"
+     "posted": "2026-10-21T23:10:21Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-4d071fabe1",
@@ -594,9 +601,11 @@
      "analysis": "Novig's price was 3.7% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "L",
      "actual": "3 ast",
-     "clv": null,
+     "clv": 0.48,
      "units": -0.5,
-     "posted": "2026-10-21T23:10:21Z"
+     "posted": "2026-10-21T23:10:21Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-6b7346ddbf",
@@ -619,9 +628,11 @@
      "analysis": "Novig's price was 3.5% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "13 pts",
-     "clv": 1.79,
+     "clv": null,
      "units": 0.463,
-     "posted": "2026-10-21T23:10:21Z"
+     "posted": "2026-10-21T23:10:21Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-a5f099edb8",
@@ -644,9 +655,11 @@
      "analysis": "Novig's price was 3.4% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "1 ast",
-     "clv": 1.49,
+     "clv": -0.98,
      "units": -0.5,
-     "posted": "2026-10-21T23:10:21Z"
+     "posted": "2026-10-21T23:10:21Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-ddcf348c84",
@@ -669,9 +682,11 @@
      "analysis": "Novig's price was 3.4% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "5 ast",
-     "clv": 1.65,
+     "clv": 0.04,
      "units": 0.472,
-     "posted": "2026-10-21T23:10:21Z"
+     "posted": "2026-10-21T23:10:21Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-9fea56566b",
@@ -694,9 +709,11 @@
      "analysis": "Novig's price was 3.4% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "3 reb",
-     "clv": 1.77,
+     "clv": 0.04,
      "units": -0.5,
-     "posted": "2026-10-21T23:10:21Z"
+     "posted": "2026-10-21T23:10:21Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-1a1882f5e1",
@@ -719,9 +736,11 @@
      "analysis": "Novig's price was 9.3% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "W",
      "actual": "4 ast",
-     "clv": null,
+     "clv": -0.05,
      "units": 0.85,
-     "posted": "2026-10-21T23:40:25Z"
+     "posted": "2026-10-21T23:40:25Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-c77cf1a02e",
@@ -744,9 +763,11 @@
      "analysis": "Novig's price was 4.9% better than the sharp-book consensus line, 60 minutes before tip.",
      "status": "W",
      "actual": "6 ast",
-     "clv": null,
+     "clv": -1.5,
      "units": 0.75,
-     "posted": "2026-10-21T23:40:25Z"
+     "posted": "2026-10-21T23:40:25Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-2a389b0227",
@@ -769,9 +790,11 @@
      "analysis": "Novig's price was 4.3% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "2 ast",
-     "clv": 1.7,
+     "clv": 1.5,
      "units": -0.5,
-     "posted": "2026-10-21T23:40:25Z"
+     "posted": "2026-10-21T23:40:25Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-4327d098de",
@@ -794,9 +817,11 @@
      "analysis": "Novig's price was 3.8% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "W",
      "actual": "30 pts",
-     "clv": -1.79,
+     "clv": -1.51,
      "units": 0.481,
-     "posted": "2026-10-21T23:40:25Z"
+     "posted": "2026-10-21T23:40:25Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-6fb8a4605b",
@@ -819,9 +844,11 @@
      "analysis": "Novig's price was 3.2% better than Pinnacle's no-margin line, 60 minutes before tip.",
      "status": "L",
      "actual": "16 pts",
-     "clv": 1.59,
+     "clv": -2.87,
      "units": -0.5,
-     "posted": "2026-10-21T23:40:25Z"
+     "posted": "2026-10-21T23:40:25Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-f3fd73548d",
@@ -844,9 +871,11 @@
      "analysis": "Novig's price was 7.8% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "28 pts",
-     "clv": 2.05,
+     "clv": 0.29,
      "units": -0.75,
-     "posted": "2026-10-22T01:00:32Z"
+     "posted": "2026-10-22T01:00:32Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-921a50144b",
@@ -869,9 +898,11 @@
      "analysis": "ProphetX's price was 5.2% better than the sharp-book consensus line, 59 minutes before tip.",
      "status": "L",
      "actual": "4 reb",
-     "clv": null,
+     "clv": -0.42,
      "units": -0.75,
-     "posted": "2026-10-22T01:00:32Z"
+     "posted": "2026-10-22T01:00:32Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-6d145f3f3e",
@@ -894,9 +925,11 @@
      "analysis": "Novig's price was 4.8% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "4 reb",
-     "clv": 2.04,
+     "clv": -0.42,
      "units": -0.75,
-     "posted": "2026-10-22T01:00:32Z"
+     "posted": "2026-10-22T01:00:32Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-e3406df29e",
@@ -919,9 +952,11 @@
      "analysis": "ProphetX's price was 4.3% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "8 reb",
-     "clv": 2.77,
+     "clv": 0.81,
      "units": -0.75,
-     "posted": "2026-10-22T01:00:32Z"
+     "posted": "2026-10-22T01:00:32Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-c589cf64f3",
@@ -944,9 +979,11 @@
      "analysis": "Novig's price was 3.0% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "W",
      "actual": "23 pts",
-     "clv": 1.56,
+     "clv": -0.96,
      "units": 0.472,
-     "posted": "2026-10-22T01:00:32Z"
+     "posted": "2026-10-22T01:00:32Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-e116c616d4",
@@ -969,9 +1006,11 @@
      "analysis": "Novig's price was 6.9% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "2 reb",
-     "clv": 2.7,
+     "clv": 0.14,
      "units": -0.5,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-12dc68c0d7",
@@ -994,9 +1033,11 @@
      "analysis": "Novig's price was 6.6% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "83-124",
-     "clv": 0.37,
+     "clv": null,
      "units": -0.75,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-98895547d0",
@@ -1019,9 +1060,11 @@
      "analysis": "Novig's price was 6.1% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "10 pts",
-     "clv": 2.94,
+     "clv": -0.58,
      "units": -0.75,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-c11163718b",
@@ -1044,9 +1087,11 @@
      "analysis": "ProphetX's price was 5.6% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "1 ast",
-     "clv": 2.27,
+     "clv": 0.12,
      "units": -0.75,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-8b3032e415",
@@ -1069,9 +1114,11 @@
      "analysis": "Novig's price was 4.9% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "3 ast",
-     "clv": 2.4,
+     "clv": -0.52,
      "units": -0.75,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-fcb34b591a",
@@ -1094,9 +1141,11 @@
      "analysis": "Novig's price was 4.4% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "2 ast",
-     "clv": 2.27,
+     "clv": -0.42,
      "units": -0.75,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-265bfcdf07",
@@ -1119,9 +1168,11 @@
      "analysis": "Novig's price was 4.0% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "6 reb",
-     "clv": 1.56,
+     "clv": null,
      "units": -0.5,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-0b6ee8d658",
@@ -1144,9 +1195,11 @@
      "analysis": "ProphetX's price was 3.1% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "8 pts",
-     "clv": 1.93,
+     "clv": -2.03,
      "units": -0.5,
-     "posted": "2026-10-22T01:10:33Z"
+     "posted": "2026-10-22T01:10:33Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-e267ec7b23",
@@ -1171,7 +1224,9 @@
      "actual": "7 ast",
      "clv": null,
      "units": 1.08,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-fa4dc10e0d",
@@ -1194,9 +1249,11 @@
      "analysis": "Novig's price was 7.5% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "10 pts",
-     "clv": 3.49,
+     "clv": -0.01,
      "units": -0.75,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-7c8fbcc57f",
@@ -1219,9 +1276,11 @@
      "analysis": "Novig's price was 5.9% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "8 pts",
-     "clv": 1.51,
+     "clv": null,
      "units": -0.75,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-d6f0874837",
@@ -1244,9 +1303,11 @@
      "analysis": "Novig's price was 4.3% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "W",
      "actual": "14 pts",
-     "clv": 2.0,
+     "clv": 4.27,
      "units": 0.877,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-bcfa25976b",
@@ -1269,9 +1330,11 @@
      "analysis": "Novig's price was 4.2% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "1 reb",
-     "clv": 1.64,
+     "clv": -0.03,
      "units": -0.5,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-c9c5294a13",
@@ -1294,9 +1357,11 @@
      "analysis": "Novig's price was 3.2% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "3 reb",
-     "clv": 1.33,
+     "clv": -0.31,
      "units": -0.5,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-79afbda7a6",
@@ -1319,9 +1384,11 @@
      "analysis": "Novig's price was 3.0% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "L",
      "actual": "13 pts",
-     "clv": 1.58,
+     "clv": null,
      "units": -0.5,
-     "posted": "2026-10-22T01:40:36Z"
+     "posted": "2026-10-22T01:40:36Z",
+     "rules": "v1",
+     "retired": true
     }
    ]
   },
@@ -1334,9 +1401,9 @@
     "p": 0,
     "units": -1.85,
     "roi": -52.9,
-    "clv": 1.84,
+    "clv": 0.66,
     "beat": 100,
-    "n_clv": 5
+    "n_clv": 3
    },
    "picks": [
     {
@@ -1362,7 +1429,9 @@
      "actual": "9 pts",
      "clv": null,
      "units": 0.9,
-     "posted": "2026-10-21T00:42:56Z"
+     "posted": "2026-10-21T00:42:56Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-0a13d1917a",
@@ -1385,9 +1454,11 @@
      "analysis": "Novig's price was 4.5% better than Pinnacle's no-margin line, 47 minutes before tip.",
      "status": "L",
      "actual": "6 reb",
-     "clv": 2.33,
+     "clv": null,
      "units": -0.75,
-     "posted": "2026-10-21T00:42:56Z"
+     "posted": "2026-10-21T00:42:56Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-1f88ef3088",
@@ -1410,9 +1481,11 @@
      "analysis": "Novig's price was 3.9% better than Pinnacle's no-margin line, 47 minutes before tip.",
      "status": "L",
      "actual": "1 ast",
-     "clv": 1.88,
+     "clv": null,
      "units": -0.5,
-     "posted": "2026-10-21T00:42:56Z"
+     "posted": "2026-10-21T00:42:56Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-11e7578008",
@@ -1435,9 +1508,11 @@
      "analysis": "Novig's price was 3.8% better than Pinnacle's no-margin line, 47 minutes before tip.",
      "status": "L",
      "actual": "7 reb",
-     "clv": 1.95,
+     "clv": 0.52,
      "units": -0.5,
-     "posted": "2026-10-21T00:42:56Z"
+     "posted": "2026-10-21T00:42:56Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-d006c53e17",
@@ -1460,9 +1535,11 @@
      "analysis": "Novig's price was 3.5% better than Pinnacle's no-margin line, 47 minutes before tip.",
      "status": "L",
      "actual": "7 pts",
-     "clv": 1.61,
+     "clv": 1.12,
      "units": -0.5,
-     "posted": "2026-10-21T00:42:56Z"
+     "posted": "2026-10-21T00:42:56Z",
+     "rules": "v1",
+     "retired": true
     },
     {
      "id": "nba-e33726b709",
@@ -1485,9 +1562,11 @@
      "analysis": "Novig's price was 3.1% better than Pinnacle's no-margin line, 47 minutes before tip.",
      "status": "L",
      "actual": "12 pts",
-     "clv": 1.41,
+     "clv": 0.33,
      "units": -0.5,
-     "posted": "2026-10-21T00:42:56Z"
+     "posted": "2026-10-21T00:42:56Z",
+     "rules": "v1",
+     "retired": true
     }
    ]
   }
