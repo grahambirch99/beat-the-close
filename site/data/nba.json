@@ -5,12 +5,12 @@
   "p": 0,
   "units": -1.85,
   "roi": -52.9,
-  "clv": 1.58,
-  "beat": 90,
-  "n_clv": 30,
+  "clv": 1.68,
+  "beat": 92,
+  "n_clv": 38,
   "bets": 56,
   "goal": 100,
-  "graded_clv": 30
+  "graded_clv": 38
  },
  "by_type": [
   {
@@ -969,7 +969,7 @@
      "analysis": "Novig's price was 6.9% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 2.7,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -994,7 +994,7 @@
      "analysis": "Novig's price was 6.6% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 0.37,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -1019,7 +1019,7 @@
      "analysis": "Novig's price was 6.1% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 2.94,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -1044,7 +1044,7 @@
      "analysis": "ProphetX's price was 5.6% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 2.27,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -1069,7 +1069,7 @@
      "analysis": "Novig's price was 4.9% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 2.4,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -1094,7 +1094,7 @@
      "analysis": "Novig's price was 4.4% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 2.27,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -1119,7 +1119,7 @@
      "analysis": "Novig's price was 4.0% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.56,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
@@ -1144,7 +1144,7 @@
      "analysis": "ProphetX's price was 3.1% better than Pinnacle's no-margin line, 59 minutes before tip.",
      "status": "pending",
      "actual": "",
-     "clv": null,
+     "clv": 1.93,
      "units": null,
      "posted": "2026-10-22T01:10:33Z"
     },
