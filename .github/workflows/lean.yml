@@ -1,0 +1,68 @@
+name: lean-monitor
+
+# Weekly Over/Under lean monitor on Kalshi NFL player-prop main lines (free public data, free public-repo minutes).
+# Runs the code from the private pipeline repo (checked out at p/) and pushes only the aggregate report back there
+# (p/data/lean/). Per-market Kalshi prices stay in this workflow's cache; nothing is committed to this public repo.
+on:
+  schedule:
+    - cron: "17 14 * * 2"   # Tue ~7:17 AM PT (after Monday night's game settles)
+    - cron: "17 14 * * 3"   # Wed backup (cheap: only adds games not already cached)
+  workflow_dispatch:
+    inputs:
+      max_markets:
+        description: "Optional cap on markets priced this run (blank = all new)"
+        default: ""
+
+concurrency:
+  group: lean-monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          repository: grahambirch99/nfl-odds-logger
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: p
+          fetch-depth: 1
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install -q pandas pyarrow
+      - name: Restore market cache
+        uses: actions/cache/restore@v4
+        with:
+          path: lean-cache
+          key: lean-v1-${{ github.run_id }}
+          restore-keys: lean-v1-
+      - name: Live-ladder smoke test (throwaway db)
+        continue-on-error: true
+        run: ODDS_DB=/tmp/kalshi_smoke.db timeout 300 python p/lean_monitor.py smoke
+      - name: Add newly settled games
+        run: |
+          MAX="${{ inputs.max_markets }}"
+          python p/lean_monitor.py update --cache lean-cache/markets.csv.gz ${MAX:+--max $MAX}
+      - name: Save market cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: lean-cache
+          key: lean-v1-${{ github.run_id }}
+      - name: Report
+        run: LEAN_OUT=p/data/lean python p/lean_monitor.py report --cache lean-cache/markets.csv.gz
+      - name: Push report to the private repo
+        run: |
+          cd p
+          git config user.name  "lean-monitor"
+          git config user.email "lean-monitor@users.noreply.github.com"
+          git add data/lean
+          if git diff --cached --quiet; then echo "No change."; else
+            git commit -qm "lean monitor $(date -u +%Y-%m-%dT%H:%MZ)"
+            for i in 1 2 3 4 5; do git pull -q --rebase -X theirs && git push -q && break; sleep $((i*5)); done
+          fi
