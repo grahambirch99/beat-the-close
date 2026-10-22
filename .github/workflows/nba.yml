@@ -68,7 +68,7 @@ jobs:
           fi
       - name: Wait for the tip-off window
         id: wait
-        run: python p/nba_wait.py wait --budget 290 >> "$GITHUB_OUTPUT"
+        run: python p/nba_wait.py wait --budget 290 --grade-csv data/nba/paper.csv >> "$GITHUB_OUTPUT"
       - name: Game night
         if: steps.wait.outputs.go == '1'
         env:
