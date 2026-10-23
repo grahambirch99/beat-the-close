@@ -1,13 +1,13 @@
 {
  "season": {
-  "w": 6,
-  "l": 7,
+  "w": 7,
+  "l": 8,
   "p": 0,
-  "units": 0.1,
-  "roi": 2.1,
-  "clv": -0.63,
-  "beat": 60,
-  "n_clv": 10
+  "units": 0.14,
+  "roi": 2.2,
+  "clv": -0.26,
+  "beat": 67,
+  "n_clv": 12
  },
  "curve": [
   {
@@ -87,6 +87,18 @@
    "week": 6,
    "label": "Elic Ayomanor: Over 1.5 receptions",
    "units": 0.1
+  },
+  {
+   "id": "2026-W07-0019",
+   "week": 7,
+   "label": "A.J. Brown: Under 4.5 receptions",
+   "units": 0.89
+  },
+  {
+   "id": "2026-W07-0020",
+   "week": 7,
+   "label": "D'Andre Swift: Under 2.5 receptions",
+   "units": 0.14
   }
  ],
  "clv_by_week": [
@@ -94,19 +106,24 @@
    "week": 6,
    "clv": -0.63,
    "n": 10
+  },
+  {
+   "week": 7,
+   "clv": 1.6,
+   "n": 2
   }
  ],
  "by_type": [
   {
    "type": "Receptions",
-   "w": 5,
-   "l": 5,
+   "w": 6,
+   "l": 6,
    "p": 0,
-   "units": 0.1,
-   "roi": 2.1,
-   "clv": -0.63,
-   "beat": 60,
-   "n_clv": 10
+   "units": 0.14,
+   "roi": 2.2,
+   "clv": -0.26,
+   "beat": 67,
+   "n_clv": 12
   },
   {
    "type": "Rushing yards",
