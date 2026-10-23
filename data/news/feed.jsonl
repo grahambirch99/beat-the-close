@@ -18,3 +18,10 @@
 {"kind": "injury", "team": "", "player": "Mike Washington", "pos": "", "source": "rotowire", "text": "Mike Washington: Downgraded to DNP on Thursday", "at": "2026-10-22T23:09:06.989246+00:00"}
 {"kind": "injury", "team": "", "player": "Mike Washington", "pos": "", "source": "rotoworld-fb", "text": "Mike Washington (foot/back) downgrades to DNP", "at": "2026-10-22T23:18:30.289566+00:00"}
 {"kind": "injury", "source": "sleeper", "team": "CHI", "player": "Cole Kmet", "pos": "TE", "text": "Cole Kmet (CHI TE) status healthy -> out [Knee]", "at": "2026-10-23T03:31:40.316717+00:00"}
+{"kind": "injury", "source": "sleeper", "team": "ATL", "player": "Brian Robinson Jr.", "pos": "RB", "text": "Brian Robinson Jr. (ATL RB) status questionable -> out [Hamstring]", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "injury", "source": "sleeper", "team": "IND", "player": "Tyler Warren", "pos": "TE", "text": "Tyler Warren (IND TE) status questionable -> out [Groin]", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "injury", "source": "sleeper", "team": "TB", "player": "Emeka Egbuka", "pos": "WR", "text": "Emeka Egbuka (TB WR) status questionable -> out [Concussion]", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "injury", "team": "", "player": "Tyjae Spears", "pos": "", "source": "rotoworld-fb", "text": "Tyjae Spears (knee) pops back on questionable line", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "qb", "team": "TB", "player": "Baker Mayfield", "pos": "QB", "source": "rotoworld-fb", "text": "Baker Mayfield (thumb) officially questionable", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "injury", "team": "", "player": "Puka Nacua", "pos": "", "source": "rotoworld-fb", "text": "Puka Nacua (calf) game-time decision, DNP on Fri.", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "injury", "team": "", "player": "Jordan Mason", "pos": "", "source": "rotoworld-fb", "text": "Jordan Mason (thumb) questionable after 3 FPs", "at": "2026-10-23T19:59:44.161520+00:00"}
