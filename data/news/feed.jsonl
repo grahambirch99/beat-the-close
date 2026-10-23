@@ -25,3 +25,4 @@
 {"kind": "qb", "team": "TB", "player": "Baker Mayfield", "pos": "QB", "source": "rotoworld-fb", "text": "Baker Mayfield (thumb) officially questionable", "at": "2026-10-23T19:59:44.161520+00:00"}
 {"kind": "injury", "team": "", "player": "Puka Nacua", "pos": "", "source": "rotoworld-fb", "text": "Puka Nacua (calf) game-time decision, DNP on Fri.", "at": "2026-10-23T19:59:44.161520+00:00"}
 {"kind": "injury", "team": "", "player": "Jordan Mason", "pos": "", "source": "rotoworld-fb", "text": "Jordan Mason (thumb) questionable after 3 FPs", "at": "2026-10-23T19:59:44.161520+00:00"}
+{"kind": "injury", "source": "sleeper", "team": "SEA", "player": "Zach Charbonnet", "pos": "RB", "text": "Zach Charbonnet (SEA RB) status questionable -> out [Knee - ACL]", "at": "2026-10-23T20:51:42.118941+00:00"}
